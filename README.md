@@ -3,7 +3,7 @@
 
   <h1>Introdução à Ciência de Dados</h1>
   <p><strong>LAME · EMASC 2026</strong></p>
-  <p><strong>Duração:</strong> 4 horas · <strong>Linguagem:</strong> Python · <strong>Ambiente sugerido:</strong> Google Colab</p>
+  <p><strong>Duração:</strong> 4 horas · <strong>Linguagem:</strong> Python</p>
 </div>
 
 Repositório oficial do minicurso **Introdução à Ciência de Dados**, promovido pela Liga Acadêmica Matemática e Empresa (LAME), vinculada à Universidade Federal de Sergipe (UFS), durante a EMASC 2026.
@@ -62,7 +62,7 @@ A distribuição das responsabilidades será definida em reunião, considerando 
 
 Os arquivos devem ser mantidos nos diretórios de cada área, com nomes padronizados e documentação em português brasileiro. Os exemplos Python devem priorizar a compatibilidade com o Google Colab.
 
-O acompanhamento será organizado no [repositório oficial no GitHub](https://github.com/lame-ufs/EMASC-2026), utilizando Issues para tarefas e responsabilidades, GitHub Projects para os estados **A fazer**, **Em andamento** e **Concluído**, e Pull Requests para revisão e integração dos materiais. As atribuições individuais serão decididas em reunião.
+Cada integrante fará commits diretamente no [repositório no GitHub](https://github.com/lame-ufs/EMASC-2026), nas pastas destinadas aos materiais sob sua responsabilidade.
 
 ## 4. Estrutura do repositório
 
