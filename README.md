@@ -6,7 +6,7 @@
   <p><strong>Duração:</strong> 4 horas · <strong>Linguagem:</strong> Python</p>
 </div>
 
-Repositório oficial do minicurso **Introdução à Ciência de Dados**, promovido pela Liga Acadêmica Matemática e Empresa (LAME), vinculada à Universidade Federal de Sergipe (UFS), durante a EMASC 2026.
+Repositório do minicurso **Introdução à Ciência de Dados**, promovido pela Liga Acadêmica Matemática e Empresa (LAME), vinculada à Universidade Federal de Sergipe (UFS), durante a EMASC 2026.
 
 Os materiais estão em preparação e serão organizados nas seis frentes descritas abaixo.
 
@@ -52,15 +52,13 @@ Introduzir os participantes aos fundamentos da Ciência de Dados com Python, com
 
 ## 3. Organização e colaboração
 
-A equipe é formada por Phelipe Melo, Gabriel Carvalho, João Victor, Rafael Silva e Kauê. Phelipe Melo, vice-presidente da LAME, coordena a organização do projeto.
-
 A distribuição das responsabilidades será definida em reunião, considerando a disponibilidade da equipe.
 
 - **Produção dos materiais:** cada frente poderá contar com um ou mais integrantes.
-- **Condução das aulas:** os ministrantes serão definidos separadamente dos responsáveis pela produção.
-- **Revisão final:** os materiais deverão ser consolidados e testados antes do minicurso.
+- **Condução das aulas:** os ministrantes serão definidos separadamente dos responsáveis.
+- **Revisão final:** os materiais deverão ser consolidados e revisados antes do minicurso.
 
-Os arquivos devem ser mantidos nos diretórios de cada área, com nomes padronizados e documentação em português brasileiro. Os exemplos Python devem priorizar a compatibilidade com o Google Colab.
+Os arquivos devem ser mantidos nos diretórios de cada área, com nomes padronizados e documentação. Os exemplos Python devem ser feitos no Google Colab (.ipynb).
 
 Cada integrante fará commits diretamente no [repositório no GitHub](https://github.com/lame-ufs/EMASC-2026), nas pastas destinadas aos materiais sob sua responsabilidade.
 
@@ -90,4 +88,4 @@ As pastas vazias incluem arquivos `.gitkeep` para que a estrutura também seja p
 
 ---
 
-<p align="center"><sub>Liga Acadêmica Matemática e Empresa · Universidade Federal de Sergipe · EMASC 2026</sub></p>
+<p align="center"><sub>Liga Acadêmica Matemática e Empresa · UFS · EMASC 2026</sub></p>
