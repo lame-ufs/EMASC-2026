@@ -9,7 +9,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usepackage{booktabs,tabularx}
+\usepackage{booktabs,tabularx,longtable}
 \usepackage{needspace}
 \usepackage{xcolor}
 \usepackage{listings}
@@ -86,6 +86,7 @@
 \end{titlepage}
 \hypersetup{pageanchor=true}
 
+\nocite{lame-python,lame-pandas}
 \tableofcontents
 
 \input{secoes/01-ambiente}
@@ -98,7 +99,7 @@
 \input{secoes/08-consulta}
 \clearpage
 \section*{Uso de inteligência artificial}
-Usei o ChatGPT (Codex), da OpenAI, como apoio para revisar o texto, organizar o guia em LaTeX e preparar e conferir os exemplos de código \cite{openai-codex}.
+O ChatGPT (Codex), da OpenAI, foi usado como apoio na revisão do texto, na organização em LaTeX e na preparação e verificação dos exemplos de código \cite{openai-codex}.
 
 \printbibliography[heading=bibintoc,title={Referências}]
 

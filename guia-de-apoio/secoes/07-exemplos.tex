@@ -6,7 +6,7 @@ Os dois exemplos usam a base de notas do guia. Primeiro contamos as notas ausent
 
 \subsection{Quantas notas estão faltando em cada curso?}
 
-Para investigar a falta de notas, usamos \codigo{df}, a tabela original da Seção \ref{sec:ler}. Em um agrupamento, \codigo{size} conta todas as linhas e \codigo{count} conta os valores presentes na coluna. A diferença dá o número de notas ausentes. Dividir essa diferença pelo total do curso dá a proporção de registros sem nota.
+A contagem de notas ausentes usa \codigo{df}, a tabela original da Seção \ref{sec:ler}. Em um agrupamento, \codigo{size} conta todas as linhas e \codigo{count} conta os valores presentes na coluna. A diferença dá o número de notas ausentes. Dividir essa diferença pelo total do curso dá a proporção de registros sem nota.
 
 \begin{exemplo}
 cobertura = df.groupby("curso")["nota"].agg(
@@ -41,13 +41,13 @@ plt.show()
 \includegraphics[width=0.66\linewidth]{figuras/notas-ausentes.pdf}
 
 \raggedright
-Estatística e Matemática têm uma nota ausente cada, ou \(16{,}7\%\) dos seus seis registros. Computação tem as seis notas. Para explicar as ausências, precisaríamos de mais informações.
+Estatística e Matemática têm uma nota ausente cada, ou \(16{,}7\%\) dos seus seis registros. Computação tem as seis notas. A causa das ausências depende de informações adicionais.
 \end{minipage}
 
 \needspace{34\baselineskip}
 \subsection{Como as notas se distribuem por curso?}
 
-Aqui usamos \codigo{df\_validas}, da Seção \ref{sec:ausentes}, porque queremos comparar as notas observadas. Passamos uma sequência de notas para cada curso em \codigo{ax.boxplot()}. No eixo horizontal, indicamos quantas observações entraram em cada grupo.
+A comparação usa as notas observadas em \codigo{df\_validas}, da Seção \ref{sec:ausentes}. \codigo{ax.boxplot()} recebe uma sequência de notas por curso. O eixo horizontal indica quantas observações entraram em cada grupo.
 
 \begin{exemplo}
 import matplotlib.pyplot as plt

@@ -13,7 +13,13 @@ Nos exemplos com notas, \codigo{df\_validas} é a tabela criada na Seção \ref{
 \needspace{33\baselineskip}
 \subsection{Gráfico de linhas}
 
-Use \codigo{ax.plot(x, y)} quando a ordem das observações tem significado. Aqui, cada posição em \codigo{dias} corresponde à quantidade de vendas na mesma posição de \codigo{vendas}. \codigo{marker="o"} marca os valores observados. A linha tracejada representa uma meta de \(12\) vendas.
+\codigo{ax.plot(x, y)} liga os pontos na ordem em que os dados são fornecidos. Aqui, cada posição em \codigo{dias} corresponde à quantidade de vendas na mesma posição de \codigo{vendas}. \codigo{marker="o"} marca os valores observados. A linha tracejada representa uma meta de \(12\) vendas.
+
+Entre dois pontos consecutivos \((x_i,y_i)\) e \((x_{i+1},y_{i+1})\), com dias distintos, o segmento tem inclinação
+\[
+  m_i=\frac{y_{i+1}-y_i}{x_{i+1}-x_i}.
+\]
+Do dia \(2\) ao dia \(3\), a inclinação é \((8-12)/(3-2)=-4\) vendas por dia. O sinal indica que a linha desce nesse intervalo.
 
 \begin{exemplo}
 import matplotlib.pyplot as plt
@@ -42,7 +48,7 @@ As vendas caem de \(12\) para \(8\) entre o segundo e o terceiro dia e voltam a 
 \subsection{Legendas para identificar as séries}
 \label{sec:legendas}
 
-Quando duas séries aparecem no mesmo gráfico, passe um \codigo{label} para cada uma e chame \codigo{ax.legend()} depois de desenhar todas. A legenda usa esses nomes junto com a cor, o marcador e o estilo da linha de cada série \cite{matplotlib}.
+Em um gráfico com várias séries, o argumento \codigo{label} dá um nome a cada série. A chamada a \codigo{ax.legend()} após o desenho das séries exibe esses nomes. A legenda usa esses nomes junto com a cor, o marcador e o estilo da linha de cada série \cite{matplotlib}.
 
 \begin{exemplo}
 import matplotlib.pyplot as plt
@@ -69,12 +75,16 @@ plt.show()
 A linha contínua representa a Loja A e a tracejada representa a Loja B. No dia \(3\), a Loja B vendeu \(11\) unidades e a Loja A vendeu \(8\).
 \end{minipage}
 
-O argumento \codigo{title} dá um título à legenda. \codigo{loc="upper left"} posiciona a legenda no canto superior esquerdo. Se ela cobrir algum dado importante, escolha outra posição ou use \codigo{loc="best"} para deixar o Matplotlib escolher.
+O argumento \codigo{title} dá um título à legenda. \codigo{loc="upper left"} posiciona a legenda no canto superior esquerdo. Se essa posição cobrir dados importantes, outra posição pode ser indicada. Com \codigo{loc="best"}, o Matplotlib escolhe entre as posições disponíveis.
 
 \needspace{33\baselineskip}
 \subsection{Gráfico de barras}
 
-Use \codigo{ax.bar(categorias, alturas)} para comparar valores associados a categorias. Neste exemplo, \codigo{value\_counts()} fornece a contagem de notas válidas por curso. A base zero permite comparar as alturas diretamente.
+\codigo{ax.bar()} recebe as categorias e suas alturas. Neste exemplo, as alturas são as contagens de notas válidas por curso, obtidas com \codigo{value\_counts()}. A base zero permite comparar as alturas diretamente. Se \(c_i\) é o curso do registro \(i\) com nota válida, a altura da barra do curso \(c\) é
+\[
+  h_c=\sum_{i=1}^{n}\mathbf{1}(c_i=c).
+\]
+A função indicadora \(\mathbf{1}\) vale \(1\) quando a condição é verdadeira e \(0\) nos demais casos. A soma conta os registros que pertencem ao curso.
 
 \begin{exemplo}
 import matplotlib.pyplot as plt
@@ -106,6 +116,13 @@ O histograma resume uma variável numérica agrupando seus valores em intervalos
 
 Os intervalos incluem o limite esquerdo e excluem o direito. O último também inclui o limite direito. Assim, uma nota \(8{,}0\) entra no intervalo de \(8\) a \(9\), e uma nota \(10{,}0\) entraria no último \cite{matplotlib}.
 
+Para notas \(x_1,\ldots,x_n\) e um intervalo \([b_j,b_{j+1})\), a altura em contagens é \(n_j\) e a frequência relativa é \(f_j\):
+\[
+  n_j=\sum_{i=1}^{n}\mathbf{1}(b_j\le x_i<b_{j+1}),
+  \qquad f_j=\frac{n_j}{n}.
+\]
+No último intervalo, a desigualdade superior inclui o valor \(b_{j+1}\). No gráfico abaixo, o eixo vertical mostra \(n_j\).
+
 \begin{exemplo}
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
@@ -128,7 +145,7 @@ plt.show()
 \includegraphics[width=0.76\linewidth]{figuras/distribuicao.pdf}
 
 \raggedright
-O gráfico tem quatro notas de \(7\) a menos de \(8\) e outras quatro de \(8\) a menos de \(9\). Juntos, esses intervalos concentram metade das \(16\) notas observadas.
+O gráfico tem quatro notas de \(7\) a menos de \(8\) e outras quatro de \(8\) a menos de \(9\). Cada intervalo contém \(4/16=25\%\) das notas observadas, e os dois juntos concentram \(50\%\).
 \end{minipage}
 
 A largura dos intervalos muda o que fica visível. Com poucos intervalos, detalhes podem ser agregados. Com muitos, uma base pequena pode produzir várias barras vazias. Ao comparar dois histogramas, usar os mesmos limites facilita a leitura.
@@ -136,7 +153,12 @@ A largura dos intervalos muda o que fica visível. Com poucos intervalos, detalh
 \needspace{33\baselineskip}
 \subsection{Boxplot}
 
-\codigo{ax.boxplot()} resume a distribuição de uma variável. A caixa vai do primeiro ao terceiro quartil, e a linha dentro dela marca a mediana. Com a configuração padrão, os bigodes chegam até as observações mais extremas dentro dos limites de \(1{,}5\) vez o intervalo interquartil. Pontos além dos bigodes aparecem separadamente \cite{matplotlib}.
+\codigo{ax.boxplot()} resume a distribuição de uma variável. A caixa vai do primeiro ao terceiro quartil, e a linha dentro dela marca a mediana. Com a configuração padrão, os bigodes chegam até as observações mais extremas dentro dos limites de \(1{,}5\) vez o intervalo interquartil. Pontos além dos bigodes aparecem separadamente \cite{matplotlib}. Com \(Q_1\) e \(Q_3\) como limites da caixa, os limites para localizar os bigodes são
+\[
+  \mathrm{IQR}=Q_3-Q_1,\qquad
+  L=Q_1-1{,}5\,\mathrm{IQR},\qquad U=Q_3+1{,}5\,\mathrm{IQR}.
+\]
+No exemplo, \(\mathrm{IQR}=8{,}50-6{,}625=1{,}875\). Os bigodes chegam às observações extremas dentro de \([L,U]\).
 
 \begin{exemplo}
 import matplotlib.pyplot as plt
@@ -161,7 +183,12 @@ A mediana é \(7{,}65\). A caixa delimita a metade central dos dados, entre \(6{
 \needspace{33\baselineskip}
 \subsection{Gráfico de dispersão}
 
-\codigo{ax.scatter(x, y)} desenha um ponto para cada par de valores. No exemplo, cada ponto representa um participante. A coordenada horizontal indica horas de estudo e a vertical indica nota. O filtro de notas válidas é aplicado antes de selecionar as duas colunas para preservar o pareamento.
+\codigo{ax.scatter(x, y)} desenha um ponto para cada par de valores. No exemplo, cada ponto representa um participante. A coordenada horizontal indica horas de estudo e a vertical indica nota. O filtro de notas válidas é aplicado antes de selecionar as duas colunas para preservar o pareamento. O primeiro participante, por exemplo, aparece no ponto \((2,\;5{,}9)\). A correlação de Pearson resume a associação linear dos pares \((x_i,y_i)\):
+\[
+  r=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}
+          {\sqrt{\sum_i(x_i-\bar x)^2}\,\sqrt{\sum_i(y_i-\bar y)^2}}.
+\]
+\(\bar x\) e \(\bar y\) são as médias das horas de estudo e das notas, respectivamente.
 
 \begin{exemplo}
 import matplotlib.pyplot as plt
@@ -181,19 +208,19 @@ plt.show()
 
 \noindent\begin{minipage}{\linewidth}
 \centering
-\includegraphics[width=0.76\linewidth]{figuras/dispersao.pdf}
+\includegraphics[width=0.66\linewidth]{figuras/dispersao.pdf}
 
 \raggedright
-A tendência ascendente é compatível com uma associação linear positiva. A correlação de \(0{,}96\) descreve a base simulada. Ela é insuficiente para estabelecer um efeito causal das horas de estudo sobre a nota.
+A tendência ascendente e \(r=0{,}96\) indicam associação linear positiva na base simulada. Esse resultado, sozinho, é insuficiente para estabelecer causalidade.
 \end{minipage}
 
 \subsection{Salvar figuras}
 
-\codigo{fig.savefig()} grava a figura no caminho indicado. A extensão informa o formato. PNG é útil para inserir a figura em uma apresentação. PDF preserva traços e texto como elementos vetoriais quando o gráfico é composto por esses elementos. No exemplo a seguir, \codigo{fig} é a figura de dispersão criada acima.
+\codigo{fig.savefig()} salva a figura \codigo{fig} criada no exemplo de dispersão. A extensão determina o formato. PNG gera uma imagem em pixels, e PDF preserva os elementos vetoriais do gráfico.
 
 \begin{exemplo}
 fig.savefig("dispersao.png", dpi=200, bbox_inches="tight")
 fig.savefig("dispersao.pdf", bbox_inches="tight")
 \end{exemplo}
 
-Em um script que cria e exibe uma figura no mesmo bloco, salve-a antes de chamar \codigo{plt.show()}. No Colab, o arquivo salvo pode ser baixado pelo painel Arquivos.
+Em um script, a gravação pode ser feita antes de \codigo{plt.show()}. No Colab, os arquivos salvos ficam disponíveis no painel Arquivos.

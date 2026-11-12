@@ -6,7 +6,7 @@ Estatística ajuda a resumir, comparar e interpretar dados. Antes de calcular um
 
 \subsection{População, amostra e unidade de observação}
 
-A \textbf{população} reúne as unidades sobre as quais queremos obter informação. Uma \textbf{amostra} é um subconjunto observado dessa população. Se a pergunta for sobre todas as pessoas inscritas em um curso, os resultados de um questionário respondido por apenas parte delas descrevem os respondentes. A generalização depende de como a amostra foi obtida e de quem ficou de fora.
+A \textbf{população} reúne todas as unidades de interesse no estudo. Uma \textbf{amostra} é um subconjunto observado dessa população. Se a pergunta for sobre todas as pessoas inscritas em um curso, os resultados de um questionário respondido por apenas parte delas descrevem os respondentes. A generalização depende de como a amostra foi obtida e de quem ficou de fora.
 
 Uma linha pode representar uma pessoa, uma venda ou uma medição. Se uma pessoa aparece em várias linhas, o número de linhas e o número de pessoas respondem a perguntas diferentes. Na base de notas deste guia, cada linha corresponde a um participante fictício.
 
@@ -21,52 +21,55 @@ Uma variável categórica pode ser \textbf{nominal}, como o curso, ou \textbf{or
 A frequência absoluta é a contagem de observações em uma categoria. A relativa divide essa contagem pelo total considerado. Neste exemplo, duas das cinco observações pertencem à categoria \codigo{"Manha"}, portanto sua frequência relativa é \(2/5=0{,}4\), ou \(40\%\).
 
 \begin{exemplo}
-from collections import Counter
+import numpy as np
 
 turnos = ["Manha", "Tarde", "Manha", "Noite", "Tarde"]
-contagens = Counter(turnos)
+categorias, contagens = np.unique(turnos, return_counts=True)
 
-for turno, total in contagens.items():
+for turno, total in zip(categorias, contagens):
     proporcao = total / len(turnos)
     print(f"{turno}: {total} ({proporcao:.0%})")
-# Manha: 2 (40%), Tarde: 2 (40%), Noite: 1 (20%)
+# Manha: 2 (40%), Noite: 1 (20%), Tarde: 2 (40%)
 \end{exemplo}
 
-Uma tabela de frequências facilita a comparação entre categorias. Se houver dados ausentes, declare o denominador usado. Por exemplo, dividir pelo total de respostas válidas descreve a distribuição entre quem respondeu.
+\codigo{np.unique()} retorna as categorias em ordem e, com \codigo{return\_counts=True}, retorna também suas contagens. Uma tabela de frequências facilita a comparação entre categorias. Se houver dados ausentes, o denominador depende da pergunta do estudo. Por exemplo, dividir pelo total de respostas válidas descreve a distribuição entre quem respondeu.
 
 \subsection{Medidas de tendência central}
 
 Para \(n\) observações, a média aritmética é \(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i\). A mediana é o valor central dos dados ordenados. Se \(n\) for par, ela é a média dos dois valores centrais. A moda é o valor mais frequente. Um conjunto pode ter mais de uma moda quando há empate na maior frequência.
 
 \begin{exemplo}
-from collections import Counter
-from statistics import median
+import numpy as np
 
 valores = [10, 12, 15, 20, 30]
-print(sum(valores) / len(valores))  # 17.4
-print(median(valores))             # 15
+print(np.mean(valores))    # 17.4
+print(np.median(valores))  # 15.0
 
 categorias = ["A", "A", "B", "C", "A", "B"]
-moda, frequencia = Counter(categorias).most_common(1)[0]
-print(moda, frequencia)            # A 3
+rotulos, contagens = np.unique(categorias, return_counts=True)
+modas = rotulos[contagens == contagens.max()]
+print(modas.tolist(), contagens.max())  # ['A'] 3
 \end{exemplo}
 
 Se o último valor passar de \(30\) para \(100\), a média passa de \(17{,}4\) para \(31{,}4\) e a mediana continua em \(15\). O valor extremo pesa no cálculo da média, enquanto a posição central permanece igual.
 
 
-Se houver empate na maior frequência, \codigo{statistics.multimode()} retorna todos os valores empatados.
+A condição \codigo{contagens == contagens.max()} mantém todos os valores que atingem a maior frequência. O mesmo procedimento identifica mais de uma moda quando há empate.
 
 \begin{exemplo}
-from statistics import multimode
+import numpy as np
 
-print(multimode([6, 6, 8, 8, 9]))  # [6, 8]
+valores = [6, 6, 8, 8, 9]
+rotulos, contagens = np.unique(valores, return_counts=True)
+modas = rotulos[contagens == contagens.max()]
+print(modas.tolist())  # [6, 8]
 \end{exemplo}
 
 \subsection{Medidas de dispersão}
 
 A \textbf{amplitude} é \(x_{\max}-x_{\min}\). Para os cinco valores acima, ela é \(20\). Se \(30\) for substituído por \(100\), ela passa a \(90\).
 
-O \textbf{intervalo interquartil} é \(\mathrm{IQR}=Q_3-Q_1\), em que \(Q_1\) e \(Q_3\) são os percentis 25 e 75. Ele mede a largura da região central da distribuição. Os limites \(Q_1-1{,}5\,\mathrm{IQR}\) e \(Q_3+1{,}5\,\mathrm{IQR}\) ajudam a sinalizar observações para investigação. Registre a convenção usada para calcular quartis, pois métodos de interpolação podem produzir resultados diferentes.
+O \textbf{intervalo interquartil} é \(\mathrm{IQR}=Q_3-Q_1\), em que \(Q_1\) e \(Q_3\) são os percentis 25 e 75. Ele mede a largura da região central da distribuição. Os limites \(Q_1-1{,}5\,\mathrm{IQR}\) e \(Q_3+1{,}5\,\mathrm{IQR}\) ajudam a sinalizar observações para investigação. Métodos de interpolação podem produzir resultados diferentes, por isso a interpretação dos quartis depende da convenção adotada.
 
 
 Para os dados \codigo{[10, 12, 15, 20, 30]}, o método linear produz \(Q_1=12\), \(Q_3=20\) e \(\mathrm{IQR}=8\). O limite superior fica em \(32\). Se o \(30\) for substituído por \(100\), os quartis continuam iguais neste exemplo, e \(100\) fica acima do limite superior. A regra indica um ponto a investigar. Seu contexto determina como interpretá-lo.
@@ -76,11 +79,15 @@ Para descrever uma população finita de \(N\) valores com média \(\mu\), a var
 \[
   \sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2.
 \]
-Para a variância amostral corrigida, com \(n>1\) observações, usamos
+Com \(n>1\) observações, a variância amostral corrigida é dada por
 \[
   s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^2.
 \]
 O desvio padrão é a raiz quadrada da variância e tem a mesma unidade dos dados originais.
+
+No NumPy, \codigo{ddof} controla o divisor \(n-\mathrm{ddof}\). \codigo{ddof=0} é adequado para descrever a dispersão do conjunto observado, como as notas de todos os estudantes de uma turma de interesse. \codigo{ddof=1} é usado quando as observações são tratadas como uma amostra para estimar a variância da população e há pelo menos dois valores. Um exemplo é estimar a variância do tempo de atendimento a partir de cinco chamadas observadas de forma independente em um mesmo serviço.
+
+A correção compensa o uso da média da amostra na estimativa da variância. Ela torna a estimativa da variância não viesada para observações independentes, da mesma distribuição e com variância finita. A raiz quadrada dessa estimativa é o desvio padrão amostral \cite{numpy}.
 
 \begin{exemplo}
 import numpy as np
@@ -95,8 +102,9 @@ print(round(np.std(valores, ddof=0), 2))  # 7.14
 print(round(np.std(valores, ddof=1), 2))  # 7.99
 \end{exemplo}
 
-\nota{Atenção ao denominador}{O NumPy usa \codigo{ddof=0} por padrão. Já \codigo{Series.std()} do pandas usa \codigo{ddof=1}. Ao comparar resultados, fixe o mesmo \codigo{ddof} e aplique o mesmo tratamento a valores ausentes \cite{numpy,pandas}.}
+\nota{Atenção ao denominador}{O NumPy usa \codigo{ddof=0} por padrão. Já \codigo{Series.std()} do pandas usa \codigo{ddof=1}. A comparação de resultados exige o mesmo \codigo{ddof} e o mesmo tratamento dos valores ausentes \cite{numpy,pandas}.}
 
+\needspace{9\baselineskip}
 \subsection{Correlação de Pearson}
 
 O coeficiente de Pearson mede a direção e a intensidade da associação \textbf{linear} entre observações pareadas de duas variáveis numéricas. Se ambas tiverem variância positiva, seu valor fica entre \(-1\) e \(1\):
@@ -116,6 +124,34 @@ print(round(np.corrcoef(x, y)[0, 1], 2))  # 0.85
 
 Valores próximos de zero indicam pouca associação linear. Um gráfico de dispersão ajuda a identificar relações curvas, agrupamentos e pontos influentes. Uma associação observada, mesmo forte, é insuficiente para estabelecer causalidade.
 
+\needspace{13\baselineskip}
+\subsection{Probabilidade condicional}
+
+A probabilidade condicional \(P(A\mid B)\) mede a chance do evento \(A\) quando já se sabe que o evento \(B\) ocorreu. Se \(P(B)>0\), então
+\[
+  P(A\mid B)=\frac{P(A\cap B)}{P(B)}.
+\]
+\(A\cap B\) é o evento em que as duas condições ocorrem juntas. Se todos os registros têm a mesma chance de seleção, a fórmula divide o número de registros que satisfazem as duas condições pelo número de registros que satisfazem \(B\).
+
+Em uma turma fictícia de dez estudantes, \(A\) representa nota de pelo menos \(7\) e \(B\) representa presença de pelo menos \(75\%\). Quatro estudantes satisfazem as duas condições. Entre os seis com presença suficiente, a probabilidade de ter nota suficiente é \(P(A\mid B)=4/6\approx 0{,}667\). Entre os cinco com nota suficiente, a probabilidade de ter presença suficiente é \(P(B\mid A)=4/5=0{,}8\). A troca da condição muda o grupo de referência.
+
+\begin{exemplo}
+import numpy as np
+
+notas = np.array([8, 7, 9, 7, 6, 5, 8, 5, 4, 6])
+presencas = np.array([.90, .85, .80, .75, .80, .80, .70, .60, .65, .70])
+
+nota_suficiente = notas >= 7
+presenca_suficiente = presencas >= 0.75
+ambas = np.count_nonzero(nota_suficiente & presenca_suficiente)
+
+print(ambas)  # 4
+print(round(ambas / np.count_nonzero(presenca_suficiente), 3))  # 0.667
+print(round(ambas / np.count_nonzero(nota_suficiente), 3))      # 0.8
+\end{exemplo}
+
+\codigo{np.count\_nonzero()} conta as posições verdadeiras da máscara. Se \(A\) e \(B\) forem independentes e \(P(B)>0\), vale \(P(A\mid B)=P(A)\). Nesse caso, saber que \(B\) ocorreu não altera a probabilidade de \(A\).
+
 \subsection{Probabilidade (aprofundamento)}
 
 \paragraph{Distribuição binomial.}
@@ -125,6 +161,8 @@ Se \(X\) conta sucessos em \(n\) tentativas independentes, com a mesma probabili
   \qquad k=0,1,\ldots,n.
 \]
 
+A binomial é adequada quando o número de tentativas já está definido. Um exemplo é contar quantas pessoas respondem entre dez pessoas convidadas para uma pesquisa. Se cada pessoa responde com probabilidade \(0{,}3\) e as respostas são independentes, a probabilidade de exatamente duas respostas é dada por \codigo{binom.pmf(2, n=10, p=0.3)}. A mesma ideia se aplica à contagem de peças defeituosas em um lote inspecionado de tamanho fixo, sob as mesmas condições.
+
 \paragraph{Distribuição de Poisson.}
 A distribuição de Poisson é usada para modelar contagens em um intervalo quando o processo pode ser aproximado por uma taxa constante e contagens independentes em intervalos disjuntos. Se \(\lambda>0\) é o número esperado de ocorrências no intervalo, então
 \[
@@ -132,11 +170,14 @@ A distribuição de Poisson é usada para modelar contagens em um intervalo quan
   \qquad k=0,1,2,\ldots.
 \]
 
-Nos exemplos abaixo, calculamos a probabilidade de exatamente dois sucessos em dez tentativas com \(p=0{,}3\) e a probabilidade de exatamente duas ocorrências em um intervalo cuja contagem esperada é três \cite{scipy}.
+A Poisson é adequada para contar ocorrências em um intervalo de tempo ou espaço. Por exemplo, uma central recebe, em média, três chamadas por hora. Sob as condições do modelo, \(\lambda=3\) para uma hora e \(\lambda=1{,}5\) para meia hora. Esses valores permitem calcular a chance de duas chamadas em uma hora e de nenhuma chamada em meia hora. Se a taxa variar durante o dia, é importante escolher um intervalo em que ela seja aproximadamente estável.
+
+\codigo{pmf()} fornece a probabilidade de uma contagem exata. Na função \codigo{poisson.pmf()}, \codigo{mu} recebe o valor de \(\lambda\) para o intervalo escolhido \cite{scipy}.
 
 \begin{exemplo}
 from scipy.stats import binom, poisson
 
 print(round(binom.pmf(2, n=10, p=0.3), 4))  # 0.2335
-print(round(poisson.pmf(2, mu=3), 4))      # 0.2240
+print(f"{poisson.pmf(2, mu=3):.4f}")       # 0.2240
+print(f"{poisson.pmf(0, mu=1.5):.4f}")     # 0.2231
 \end{exemplo}

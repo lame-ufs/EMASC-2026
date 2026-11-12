@@ -1,93 +1,327 @@
 \clearpage
 \section{Consulta rápida}
+\setlength{\LTpre}{4pt}
+\setlength{\LTpost}{6pt}
 
+As tabelas agrupam os comandos pelo assunto. Cada linha traz um comando ou expressão e sua função no contexto dos exemplos do guia.
+
+\needspace{9\baselineskip}
 \subsection{Python}
+\subsubsection*{Operadores}
 
-\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
 \toprule
-\textbf{Comando} & \textbf{Uso} \\
+\textbf{Comando ou expressão} & \textbf{Uso} \\
 \midrule
-\codigo{type(x)} & Consultar o tipo de um objeto. \\
-\codigo{int(x)}, \codigo{float(x)}, \codigo{str(x)} & Converter tipos. \\
-\codigo{texto.strip()}, \codigo{texto.split(",")} & Remover espaços nas extremidades ou dividir o texto. \\
-\codigo{len(valores)}, \codigo{sum(valores)} & Contar itens ou somar valores. \\
-\codigo{min(valores)}, \codigo{max(valores)} & Obter os valores extremos. \\
-\codigo{sorted(valores)} & Criar uma lista ordenada. \\
-\codigo{lista.append(x)}, \codigo{lista.extend(xs)} & Acrescentar um item ou os itens de outra sequência. \\
-\codigo{matriz[i][j]} & Selecionar a entrada da linha \(i\) e da coluna \(j\) em uma lista de listas. \\
-\codigo{dicionario.get(chave, padrao)} & Ler uma chave com valor padrão para ausência. \\
-\codigo{range(inicio, fim, passo)} & Gerar inteiros até antes do limite final. \\
-\codigo{enumerate(valores)}, \codigo{zip(a, b)} & Percorrer posições e itens ou combinar itens correspondentes. \\
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
 \bottomrule
-\end{tabularx}
+\endlastfoot
+\codigo{x + y} & Somar valores numéricos. \\
+\codigo{x - y} & Subtrair \(y\) de \(x\). \\
+\codigo{x * y} & Multiplicar valores numéricos. \\
+\codigo{x / y} & Dividir e obter um resultado de ponto flutuante. \\
+\codigo{x // y} & Dividir e arredondar o quociente para baixo. \\
+\codigo{x \% y} & Obter o resto da divisão. \\
+\codigo{x ** y} & Elevar \(x\) à potência \(y\). \\
+\codigo{x = valor} & Associar um valor ao nome \codigo{x}. \\
+\codigo{x += y} & Atualizar um número somando \(y\) ao valor anterior. \\
+\codigo{x == y} & Testar se os valores são iguais. \\
+\codigo{x != y} & Testar se os valores são diferentes. \\
+\codigo{x < y} & Testar se \(x\) é menor que \(y\). \\
+\codigo{x <= y} & Testar se \(x\) é menor ou igual a \(y\). \\
+\codigo{x > y} & Testar se \(x\) é maior que \(y\). \\
+\codigo{x >= y} & Testar se \(x\) é maior ou igual a \(y\). \\
+\codigo{a and b} & Exigir as duas condições booleanas. \\
+\codigo{a or b} & Exigir pelo menos uma condição booleana. \\
+\codigo{not a} & Inverter uma condição booleana. \\
+\codigo{x in valores} & Testar se um valor pertence à coleção. \\
+\codigo{x not in valores} & Testar se um valor está fora da coleção. \\
+\codigo{x is None} & Identificar o valor usado para representar ausência. \\
+\codigo{x is not None} & Testar se o valor é diferente de \codigo{None} por identidade. \\
+\end{longtable}
 
-\subsection{NumPy}
+\needspace{6\baselineskip}
+\subsubsection*{Tipos e texto}
 
-\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
 \toprule
-\textbf{Comando} & \textbf{Uso} \\
+\textbf{Comando ou expressão} & \textbf{Uso} \\
 \midrule
-\codigo{np.array(lista)} & Criar um array. \\
-\codigo{arr.shape}, \codigo{arr.ndim}, \codigo{arr.dtype} & Consultar formato, número de dimensões e tipo dos elementos. \\
-\codigo{np.zeros((l, c))}, \codigo{np.ones(n)} & Criar uma matriz de zeros ou um vetor de uns. \\
-\codigo{np.arange(a, b, p)} & Gerar valores com passo \(p\). Para passos inteiros, \(b\) é excluído. \\
-\codigo{np.linspace(a, b, n)} & Gerar \(n\) pontos, incluindo as extremidades por padrão. \\
-\codigo{arr.reshape(l, c)} & Reorganizar um array em \(l\) linhas e \(c\) colunas. \\
-\codigo{arr[:, 1]} & Selecionar a segunda coluna de uma matriz. \\
-\codigo{a.T}, \codigo{a @ b} & Obter a transposta e o produto matricial. \\
-\codigo{arr[arr >= 7]} & Selecionar elementos que satisfazem uma condição. \\
-\codigo{arr.sum(axis=0)} & Somar os valores de cada coluna de uma matriz. \\
-\codigo{np.mean(arr)}, \codigo{np.median(arr)} & Calcular média e mediana. \\
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\codigo{print(x)} & Exibir um valor na saída. \\
+\codigo{type(x)} & Consultar o tipo de um objeto. \\
+\codigo{int(x)} & Converter um valor para inteiro. \\
+\codigo{float(x)} & Converter um valor para ponto flutuante. \\
+\codigo{str(x)} & Converter um valor para texto. \\
+\codigo{bool(x)} & Converter um valor para booleano. \\
+\codigo{texto[i]} & Selecionar o caractere na posição \(i\). \\
+\codigo{texto[inicio:fim]} & Extrair um trecho, excluindo o índice final. \\
+\codigo{texto.strip()} & Remover espaços das extremidades. \\
+\codigo{texto.lower()} & Retornar uma versão em letras minúsculas. \\
+\codigo{texto.replace(a, b)} & Substituir cada ocorrência de \codigo{a} por \codigo{b}. \\
+\codigo{texto.split(",")} & Separar o texto em partes usando a vírgula. \\
+\codigo{" ".join(partes)} & Juntar textos separados por um espaço. \\
+\codigo{f"\{nota:.2f\}"} & Apresentar a nota com duas casas decimais. \\
+\codigo{f"\{proporcao:.0\%\}"} & Apresentar uma proporção como porcentagem inteira. \\
+\end{longtable}
+
+\needspace{6\baselineskip}
+\subsubsection*{Coleções e repetição}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\codigo{len(valores)} & Contar os itens de uma coleção. \\
+\codigo{sum(valores)} & Somar os valores de uma coleção numérica. \\
+\codigo{min(valores)} & Obter o menor valor. \\
+\codigo{max(valores)} & Obter o maior valor. \\
+\codigo{sorted(valores)} & Criar uma lista ordenada. \\
+\codigo{lista.sort()} & Ordenar a lista existente. \\
+\codigo{lista.append(x)} & Acrescentar um item ao final da lista. \\
+\codigo{lista.extend(xs)} & Acrescentar os itens de outra coleção à lista. \\
+\codigo{matriz[i][j]} & Ler a coluna \(j\) da linha \(i\) em uma lista de listas. \\
+\codigo{(a, b)} & Criar uma tupla com dois elementos. \\
+\codigo{set(valores)} & Criar um conjunto de valores distintos. \\
+\codigo{dicionario.get(chave, padrao)} & Ler uma chave e retornar o padrão se ela estiver ausente. \\
+\codigo{dicionario.items()} & Percorrer pares de chave e valor. \\
+\codigo{range(inicio, fim, passo)} & Gerar inteiros até antes do limite final. \\
+\codigo{enumerate(valores)} & Percorrer cada item junto com sua posição. \\
+\codigo{zip(a, b)} & Agrupar elementos correspondentes até acabar a sequência mais curta. \\
+\end{longtable}
+
+\needspace{6\baselineskip}
+\subsection{Estatística e probabilidade}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\codigo{np.unique(x, return\_counts=True)} & Obter valores distintos e suas contagens. \\
+\codigo{rotulos[contagens == maior]} & Identificar as modas quando \codigo{maior} é a maior contagem. \\
+\codigo{np.count\_nonzero(mascara)} & Contar as posições verdadeiras de uma máscara. \\
+\codigo{round(x, 2)} & Arredondar um número para duas casas decimais. \\
+\codigo{binom.pmf(k, n, p)} & Calcular a probabilidade de exatamente \(k\) sucessos em \(n\) tentativas binomiais. \\
+\codigo{poisson.pmf(k, mu)} & Calcular a probabilidade de exatamente \(k\) ocorrências para a média informada. \\
+\end{longtable}
+
+\needspace{9\baselineskip}
+\subsection{NumPy}
+\subsubsection*{Criação, formato e seleção}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\codigo{np.array(lista)} & Criar um array a partir de uma sequência. \\
+\codigo{np.zeros((l, c))} & Criar uma matriz de zeros com \(l\) linhas e \(c\) colunas. \\
+\codigo{np.ones(n)} & Criar um vetor de uns com \(n\) elementos. \\
+\codigo{np.arange(a, b, p)} & Gerar valores com passo \(p\), excluindo \(b\) para passos inteiros. \\
+\codigo{np.linspace(a, b, n)} & Gerar \(n\) pontos igualmente espaçados. \\
+\codigo{arr.shape} & Consultar o tamanho de cada dimensão. \\
+\codigo{arr.ndim} & Consultar o número de dimensões. \\
+\codigo{arr.dtype} & Consultar o tipo dos elementos. \\
+\codigo{arr.reshape(l, c)} & Reorganizar o array com \(l\) linhas e \(c\) colunas. \\
+\codigo{arr[i, j]} & Ler a entrada da linha \(i\) e coluna \(j\). \\
+\codigo{arr[:, 1]} & Selecionar a segunda coluna. \\
+\codigo{arr[arr >= 7]} & Selecionar elementos de acordo com uma máscara booleana. \\
+\codigo{a.T} & Obter a matriz transposta. \\
+\codigo{a * b} & Multiplicar elementos em posições correspondentes de arrays compatíveis. \\
+\codigo{a @ b} & Calcular o produto matricial. \\
+\end{longtable}
+
+\needspace{6\baselineskip}
+\subsubsection*{Operações e estatísticas}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\codigo{arr.sum(axis=0)} & Somar os valores de cada coluna. \\
+\codigo{arr.sum(axis=1)} & Somar os valores de cada linha. \\
+\codigo{np.min(arr)} & Obter o menor elemento. \\
+\codigo{np.max(arr)} & Obter o maior elemento. \\
+\codigo{np.mean(arr)} & Calcular a média. \\
 \codigo{np.nanmean(arr)} & Calcular a média desconsiderando \codigo{NaN}. \\
-\codigo{np.std(arr, ddof=1)} & Calcular desvio padrão com divisor \(n-1\). \\
+\codigo{np.median(arr)} & Calcular a mediana. \\
+\codigo{np.var(arr, ddof=1)} & Calcular a variância amostral com divisor \(n-1\). \\
+\codigo{np.std(arr, ddof=1)} & Calcular o desvio padrão amostral com divisor \(n-1\). \\
 \codigo{np.percentile(arr, q)} & Calcular o percentil \(q\). \\
 \codigo{np.corrcoef(x, y)} & Calcular a matriz de correlação de Pearson. \\
-\bottomrule
-\end{tabularx}
+\end{longtable}
 
-\clearpage
+\needspace{9\baselineskip}
 \subsection{pandas}
+\subsubsection*{Leitura e inspeção}
 
-\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
 \toprule
-\textbf{Comando} & \textbf{Uso} \\
+\textbf{Comando ou expressão} & \textbf{Uso} \\
 \midrule
-\codigo{pd.read\_csv(caminho)} & Ler uma tabela de um arquivo CSV. \\
-\codigo{df.head()}, \codigo{df.info()} & Ver primeiras linhas, tipos e contagens de valores presentes. \\
-\codigo{df.shape}, \codigo{df.columns} & Consultar dimensões e nomes das colunas. \\
-\codigo{df.describe()} & Resumir as colunas numéricas. \\
-\codigo{df["curso"].value\_counts()} & Contar ocorrências de cada categoria. \\
-\codigo{df.iloc[:3]}, \codigo{df.loc[0, "nota"]} & Selecionar por posição ou por rótulo. \\
-\codigo{df.loc[df["nota"] >= 7]} & Selecionar linhas por condição. \\
-\codigo{df.sort\_values("nota")} & Ordenar linhas por nota. \\
-\codigo{df.isna().sum()} & Contar valores ausentes por coluna. \\
-\codigo{df.dropna(subset=["nota"])} & Remover linhas cuja nota está ausente. \\
-\codigo{serie.fillna(valor)} & Preencher valores ausentes. \\
-\codigo{pd.to\_numeric(serie, errors="coerce")} & Converter uma série e marcar entradas inválidas como ausentes. \\
-\codigo{df.groupby("curso")["nota"].mean()} & Calcular a média por curso. \\
-\codigo{df.merge(outro, on="id")} & Juntar tabelas pela chave \codigo{id}. \\
-\codigo{df.to\_csv("saida.csv", index=False)} & Exportar as colunas sem o índice. \\
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
 \bottomrule
-\end{tabularx}
+\endlastfoot
+\codigo{pd.read\_csv(caminho)} & Ler um arquivo CSV. \\
+\codigo{pd.Series(valores)} & Criar uma série com valores e índice. \\
+\codigo{pd.DataFrame(registros)} & Criar uma tabela a partir de registros. \\
+\codigo{df.head(3)} & Exibir as três primeiras linhas. \\
+\codigo{df.tail(2)} & Exibir as duas últimas linhas. \\
+\codigo{df.info()} & Exibir tipos e contagens de valores presentes por coluna. \\
+\codigo{df.shape} & Consultar número de linhas e colunas. \\
+\codigo{df.columns} & Consultar os nomes das colunas. \\
+\codigo{df.describe()} & Gerar um resumo estatístico das colunas numéricas. \\
+\end{longtable}
 
+\needspace{6\baselineskip}
+\subsubsection*{Seleção, limpeza e transformação}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\codigo{df["nota"]} & Selecionar uma coluna como série. \\
+\codigo{df[["curso", "nota"]]} & Selecionar duas colunas como tabela. \\
+\codigo{df.iloc[:3]} & Selecionar as três primeiras linhas pela posição. \\
+\codigo{df.loc[0, "nota"]} & Selecionar a célula pelo rótulo da linha e da coluna. \\
+\codigo{df.loc[mascara]} & Selecionar as linhas marcadas como verdadeiras. \\
+\codigo{serie.isin(valores)} & Criar uma máscara de pertencimento. \\
+\codigo{df.sort\_values("nota")} & Ordenar as linhas pela nota. \\
+\codigo{df.isna()} & Identificar células com valores ausentes. \\
+\codigo{mascara.sum()} & Contar valores verdadeiros por coluna de uma máscara booleana. \\
+\codigo{df.dropna(subset=["nota"])} & Remover linhas com nota ausente. \\
+\codigo{serie.fillna(valor)} & Preencher valores ausentes de uma série. \\
+\codigo{pd.to\_numeric(serie, errors="coerce")} & Converter valores e sinalizar entradas inválidas como ausentes. \\
+\codigo{serie.apply(funcao)} & Aplicar uma função a cada valor da série. \\
+\codigo{df.copy()} & Criar uma cópia da tabela para análise separada. \\
+\end{longtable}
+
+\needspace{6\baselineskip}
+\subsubsection*{Resumo, junção e exportação}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\codigo{serie.value\_counts()} & Contar ocorrências de cada valor. \\
+\codigo{df.groupby("curso")} & Agrupar as linhas de acordo com o curso. \\
+\codigo{grupo.agg(medidas)} & Calcular as medidas indicadas para cada grupo. \\
+\codigo{grupo.count()} & Contar valores presentes por grupo. \\
+\codigo{grupo.size()} & Contar todas as linhas por grupo. \\
+\codigo{serie.quantile(0.5)} & Calcular o quantil de ordem \(0{,}5\), a mediana. \\
+\codigo{serie.corr(outra)} & Calcular a correlação de Pearson entre duas séries alinhadas pelo índice. \\
+\codigo{df.merge(outro, on="id")} & Combinar tabelas pela chave \codigo{id}. \\
+\codigo{df.reset\_index()} & Levar o índice antigo para uma coluna e criar um índice numérico. \\
+\codigo{df.to\_csv("saida.csv", index=False)} & Exportar a tabela para CSV sem gravar o índice. \\
+\end{longtable}
+
+\needspace{9\baselineskip}
 \subsection{Matplotlib}
+\subsubsection*{Criação e leitura dos gráficos}
 
-\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.44\linewidth}@{\hspace{1em}}>{\raggedright\arraybackslash}p{\dimexpr0.56\linewidth-1em\relax}@{}}
 \toprule
-\textbf{Comando} & \textbf{Uso} \\
+\textbf{Comando ou expressão} & \textbf{Uso} \\
 \midrule
-\codigo{plt.subplots()} & Criar figura e eixos. \\
-\codigo{ax.plot(x, y)} & Mostrar a evolução de valores ordenados. \\
-\codigo{ax.bar(categorias, alturas)} & Comparar valores por categoria. \\
-\codigo{ax.hist(valores, bins=limites)} & Mostrar a distribuição numérica em intervalos. \\
-\codigo{ax.boxplot(valores)} & Resumir mediana, quartis e observações extremas. \\
-\codigo{ax.scatter(x, y)} & Visualizar a relação entre duas variáveis numéricas. \\
-\codigo{ax.set(title=..., xlabel=..., ylabel=...)} & Definir título e rótulos dos eixos. \\
-\codigo{label="Série"}, \codigo{ax.legend()} & Nomear cada série ao desenhá-la e exibir a legenda. \\
-\codigo{fig.savefig("grafico.png", dpi=200)} & Salvar a figura em um arquivo. \\
+\endfirsthead
+\toprule
+\textbf{Comando ou expressão} & \textbf{Uso} \\
+\midrule
+\endhead
+\midrule
+\endfoot
 \bottomrule
-\end{tabularx}
+\endlastfoot
+\codigo{plt.subplots()} & Criar a figura e os eixos. \\
+\codigo{ax.plot(x, y)} & Conectar os pontos na ordem fornecida. \\
+\codigo{ax.axhline(y)} & Inserir uma linha horizontal de referência. \\
+\codigo{ax.bar(categorias, alturas)} & Comparar valores por categoria. \\
+\codigo{ax.bar\_label(barras)} & Exibir os valores junto às barras. \\
+\codigo{ax.hist(valores, bins=limites)} & Contar observações em intervalos. \\
+\codigo{ax.boxplot(valores)} & Resumir a distribuição com mediana, quartis e bigodes. \\
+\codigo{ax.scatter(x, y)} & Mostrar a relação entre duas variáveis numéricas. \\
+\codigo{ax.set(title=..., xlabel=..., ylabel=...)} & Definir título e rótulos dos eixos. \\
+\codigo{ax.set\_xticks(posicoes, rotulos)} & Definir as posições e os rótulos no eixo horizontal. \\
+\codigo{ax.grid(alpha=0.2)} & Exibir linhas de grade com transparência. \\
+\codigo{label="Série"} & Nomear um elemento quando ele é desenhado. \\
+\codigo{ax.legend(loc="upper left")} & Exibir a legenda no canto superior esquerdo. \\
+\codigo{plt.show()} & Exibir a figura. \\
+\codigo{fig.savefig("grafico.png", dpi=200)} & Salvar a figura em um arquivo. \\
+\end{longtable}
 
 \subsection{Onde continuar}
 
-O tutorial oficial do Python em português é uma referência para sintaxe e biblioteca padrão \cite{python}. Consulte a documentação de NumPy, pandas, Matplotlib e SciPy para entender parâmetros e exemplos de uso \cite{numpy,pandas,matplotlib,scipy}. A documentação do Project Jupyter apresenta os ambientes e formatos usados nos notebooks \cite{jupyter}.
+A documentação do Python em português reúne tutoriais e a referência da linguagem \cite{python}. As documentações de NumPy, pandas, Matplotlib e SciPy descrevem parâmetros e apresentam exemplos de uso \cite{numpy,pandas,matplotlib,scipy}. A documentação do Jupyter aborda a execução e a organização de notebooks \cite{jupyter}.

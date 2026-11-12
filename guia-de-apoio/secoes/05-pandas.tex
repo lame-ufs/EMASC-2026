@@ -41,21 +41,22 @@ Os exemplos a seguir usam \codigo{notas.csv}, com dados simulados de 18 particip
 \bottomrule
 \end{tabularx}
 
-O bloco procura primeiro o arquivo na pasta \codigo{dados/}. Se o arquivo foi enviado diretamente pelo painel Arquivos do Colab, o caminho usado é \codigo{notas.csv}.
+O bloco tenta ler o CSV no caminho usado na instalação local. Se esse caminho não existir, tenta \codigo{notas.csv}, como no caso de um arquivo enviado à pasta de trabalho pelo painel Arquivos do Colab.
 
 \begin{exemplo}
-from pathlib import Path
 import pandas as pd
 
-caminho = Path("dados/notas.csv")
-if not caminho.is_file():
-    caminho = Path("notas.csv")
+try:
+    df = pd.read_csv("dados/notas.csv")
+except FileNotFoundError:
+    df = pd.read_csv("notas.csv")
 
-df = pd.read_csv(caminho)
 print(df.shape)  # (18, 5)
 \end{exemplo}
 
-\nota{Separador e marca decimal}{Se outro CSV usar ponto e vírgula entre campos e vírgula para decimais, passe \codigo{sep=";"} e \codigo{decimal=","} para \codigo{pd.read\_csv()}. A base deste guia usa vírgula entre campos e ponto decimal.}
+Se a leitura falhar nos dois caminhos, a Seção \ref{sec:ambiente} indica onde colocar o CSV em cada ambiente.
+
+\nota{Separador e marca decimal}{Para um CSV com ponto e vírgula entre campos e vírgula para decimais, os argumentos de \codigo{pd.read\_csv()} são \codigo{sep=";"} e \codigo{decimal=","}. A base deste guia usa vírgula entre campos e ponto decimal.}
 
 \subsection{Inspecionar linhas, tipos e valores}
 
@@ -77,7 +78,7 @@ A saída de \codigo{describe()} inclui contagem, média, desvio padrão, mínimo
 \subsection{Selecionar, filtrar e ordenar}
 \label{sec:filtros}
 
-\codigo{iloc} seleciona por posição. No fatiamento \codigo{df.iloc[:3]}, a posição final é excluída. \codigo{loc} seleciona por rótulo ou condição booleana. Para obter algumas colunas depois de filtrar, passe os nomes no segundo argumento \cite{pandas}.
+\codigo{iloc} seleciona por posição. No fatiamento \codigo{df.iloc[:3]}, a posição final é excluída. \codigo{loc} seleciona por rótulo ou condição booleana. O segundo argumento recebe os nomes das colunas a manter após a filtragem \cite{pandas}.
 
 \begin{exemplo}
 print(df["nota"].head(3))  # Series
@@ -86,7 +87,7 @@ print(df.iloc[:3, :2])    # Primeiras 3 linhas e 2 colunas
 print(df.loc[0, "nota"])  # 5.9
 \end{exemplo}
 
-Cada comparação aplicada a uma coluna devolve uma sequência de booleanos. Use \codigo{\&} para exigir as duas condições, \codigo{\textbar} para aceitar pelo menos uma e \codigo{\textasciitilde} para inverter uma condição. Coloque cada comparação entre parênteses.
+Cada comparação sobre uma coluna produz uma série de valores booleanos, chamada máscara. \codigo{\&} combina duas máscaras e exige as duas condições. \codigo{\textbar} aceita pelo menos uma, e \codigo{\textasciitilde} inverte a máscara. Parênteses em torno de cada comparação deixam explícita a ordem das operações.
 
 \begin{exemplo}
 criterio = (df["nota"] >= 7) & (df["frequencia"] >= 0.75)
@@ -97,7 +98,21 @@ print(len(selecionados))  # 11
 print(ordenados.head(3))
 \end{exemplo}
 
-\codigo{sort\_values()} ordena pelas colunas informadas. Neste caso, \codigo{ascending=False} coloca as notas maiores no início. Para selecionar cursos específicos, passe uma lista de nomes a \codigo{isin()}. Por exemplo, \codigo{df["curso"].isin(cursos)} devolve uma máscara que pode ser usada em \codigo{loc}.
+\codigo{sort\_values()} ordena pelas colunas informadas. Neste caso, \codigo{ascending=False} coloca as notas maiores no início. \codigo{isin()} testa se cada valor da coluna pertence à lista informada. As máscaras abaixo selecionam, respectivamente, registros que atendem a pelo menos um critério, registros com nota observada e registros de dois cursos.
+
+\begin{exemplo}
+nota_suficiente = df["nota"] >= 7
+presenca_suficiente = df["frequencia"] >= 0.75
+um_criterio = df.loc[nota_suficiente | presenca_suficiente]
+com_nota = df.loc[~df["nota"].isna()]
+
+cursos = ["Matematica", "Estatistica"]
+por_curso = df.loc[df["curso"].isin(cursos)]
+
+print(len(um_criterio))  # 14
+print(len(com_nota))    # 16
+print(len(por_curso))   # 12
+\end{exemplo}
 
 \subsection{Detectar e tratar valores ausentes}
 \label{sec:ausentes}
@@ -124,7 +139,7 @@ print(turnos.fillna("Nao informado").tolist())
 
 \subsection{Converter tipos e criar colunas}
 
-\codigo{pd.to\_numeric()} converte valores numéricos armazenados como texto. Com \codigo{errors="coerce"}, o pandas sinaliza como ausente o que não conseguiu converter. Compare a origem e o resultado para identificar as entradas problemáticas.
+\codigo{pd.to\_numeric()} converte valores numéricos armazenados como texto. Com \codigo{errors="coerce"}, o pandas sinaliza como ausente o que não conseguiu converter. A comparação entre a origem e o resultado identifica as entradas que não puderam ser convertidas.
 
 \begin{exemplo}
 import pandas as pd
@@ -164,7 +179,7 @@ resumo = (
 print(resumo.round(2).to_string(index=False))
 \end{exemplo}
 
-Os grupos têm seis, cinco e cinco notas válidas, respectivamente para Computação, Estatística e Matemática. Use essas contagens ao interpretar as médias de \(7{,}87\), \(7{,}34\) e \(7{,}48\). \codigo{std} usa divisor \(n-1\) por padrão, de modo que um grupo com uma única observação válida tem desvio padrão amostral indefinido \cite{pandas}.
+Os grupos têm seis, cinco e cinco notas válidas, respectivamente para Computação, Estatística e Matemática. Essas contagens dão contexto às médias de \(7{,}87\), \(7{,}34\) e \(7{,}48\). \codigo{std} usa divisor \(n-1\) por padrão, de modo que um grupo com uma única observação válida tem desvio padrão amostral indefinido \cite{pandas}.
 
 \begin{exemplo}
 quartis = df_validas["nota"].quantile([0.25, 0.5, 0.75])
@@ -174,7 +189,7 @@ print(quartis)
 # 0.75    8.500
 \end{exemplo}
 
-\codigo{count()} conta os valores presentes da coluna selecionada. Para contar as linhas de cada grupo antes de remover notas ausentes, use \codigo{df.groupby("curso").size()}.
+\codigo{count()} conta os valores presentes da coluna selecionada. \codigo{df.groupby("curso").size()} conta todas as linhas do grupo, incluindo aquelas com nota ausente.
 
 \subsection{Juntar tabelas por uma chave}
 
