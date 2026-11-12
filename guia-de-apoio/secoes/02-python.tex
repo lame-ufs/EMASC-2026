@@ -1,0 +1,296 @@
+\needspace{7\baselineskip}
+\section{Python básico, estruturas de dados e funções}
+\label{sec:python}
+
+Python é usado em Ciência de Dados por sua sintaxe acessível e pelo ecossistema de ferramentas para tabelas, cálculos numéricos e visualização. Os exemplos deste capítulo usam apenas a linguagem e sua biblioteca padrão \cite{python}.
+
+\subsection{Valores, variáveis e tipos}
+
+Uma variável é um nome associado a um objeto. O tipo pertence ao objeto, e você pode consultar esse tipo com \codigo{type()}.
+
+\begin{exemplo}
+idade = 19
+altura = 1.72
+nome = "Ana"
+aprovado = True
+
+print(type(idade), type(altura), type(nome), type(aprovado))
+\end{exemplo}
+
+\noindent\begin{tabularx}{\linewidth}{@{}lllX@{}}
+\toprule
+\textbf{Tipo} & \textbf{Exemplo} & \textbf{Nome} & \textbf{Uso comum} \\
+\midrule
+Inteiro & \codigo{10} & \codigo{int} & Contagens e índices. \\
+Ponto flutuante & \codigo{3.14} & \codigo{float} & Medidas e proporções. \\
+Texto & \codigo{"UFS"} & \codigo{str} & Nomes, categorias e rótulos. \\
+Booleano & \codigo{True} & \codigo{bool} & Condições e filtros. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Operações, comparações e conversão de tipos}
+
+Os operadores \codigo{+}, \codigo{-}, \codigo{*} e \codigo{/} fazem as operações usuais. \codigo{//} calcula o quociente arredondado para baixo, \codigo{\%} retorna o resto correspondente e \codigo{**} calcula a potência.
+
+\begin{exemplo}
+preco = 50.0
+desconto = 0.10
+print(preco - preco * desconto)  # 45.0
+
+nota = 7.5
+frequencia = 0.80
+print(nota >= 7 and frequencia >= 0.75)  # True
+
+idade_texto = "20"
+preco_texto = "49.90"
+print(int(idade_texto) + 1)  # 21
+print(float(preco_texto) * 2)  # 99.8
+\end{exemplo}
+
+A expressão com \codigo{and} exige que as duas condições sejam verdadeiras. Na Seção \ref{sec:filtros}, a mesma ideia será aplicada a uma coluna inteira. Ao ler dados, verifique se números armazenados como texto precisam ser convertidos antes de calcular estatísticas.
+
+\subsection{Texto, formatação e conversão}
+
+Uma \codigo{str} é uma sequência de caracteres. É possível selecionar posições, remover espaços nas extremidades e padronizar a escrita. Cada método retorna uma nova string.
+
+\begin{exemplo}
+curso_bruto = "  Estatistica "
+curso = curso_bruto.strip()
+print(curso)                # Estatistica
+print(curso[:4])            # Esta
+print(curso.lower())        # estatistica
+print("mat" in curso.lower())  # False
+
+nota = 8.175
+print(f"{curso}: {nota:.2f}")   # Estatistica: 8.18
+\end{exemplo}
+
+Uma \emph{f-string} permite inserir valores dentro de um texto. O formato \codigo{.2f} exibe duas casas decimais. O valor armazenado em \codigo{nota} continua com a precisão original.
+
+Dados vindos de planilhas podem trazer espaços e vírgulas como separadores decimais. Para um texto conhecido como \codigo{" 7,5 "}, \codigo{strip()} e \codigo{replace()} permitem preparar o valor para \codigo{float()}.
+
+\begin{exemplo}
+nota_texto = " 7,5 "
+nota = float(nota_texto.strip().replace(",", "."))
+print(nota + 0.5)  # 8.0
+
+nome, curso = "Ana,Estatistica".split(",")
+print(" | ".join([nome, curso]))  # Ana | Estatistica
+\end{exemplo}
+
+O exemplo com \codigo{split()} divide uma string simples. Para ler um CSV com campos entre aspas e valores ausentes, use um leitor de CSV, como \codigo{pd.read\_csv()}, apresentado na Seção \ref{sec:ler}.
+
+\subsection{Listas, tuplas, dicionários e conjuntos}
+
+Listas guardam valores em ordem e podem ser alteradas. A primeira posição é \codigo{0}, e \codigo{-1} identifica a última. No fatiamento \codigo{notas[1:3]}, a posição final é excluída.
+
+\begin{exemplo}
+notas = [8.5, 7.0, 9.2, 5.5]
+print(notas[0], notas[-1], len(notas))  # 8.5 5.5 4
+print(notas[1:3])  # [7.0, 9.2]
+notas.append(6.8)
+\end{exemplo}
+
+Uma tupla mantém posições fixas. Um dicionário associa chaves a valores. Um conjunto armazena valores distintos e permite verificar se um elemento pertence a ele.
+
+\begin{exemplo}
+coordenada = (-10.9472, -37.0731)
+latitude, longitude = coordenada
+
+aluno = {"nome": "Carla", "curso": "Matematica", "nota": 8.7}
+print(aluno["nota"])  # 8.7
+
+cursos = ["Matematica", "Computacao", "Matematica"]
+unicos = set(cursos)
+print(len(unicos))  # 2
+print("Matematica" in unicos)  # True
+\end{exemplo}
+
+Uma lista de dicionários pode representar vários registros. Essa estrutura será usada para criar uma tabela na Seção \ref{sec:pandas}.
+
+\subsection{Funções e métodos para coleções}
+
+\codigo{len()}, \codigo{sum()}, \codigo{min()} e \codigo{max()} resumem uma lista numérica. \codigo{sorted()} devolve uma lista ordenada e preserva a ordem da lista original. Já \codigo{lista.sort()} ordena a própria lista. \codigo{append()} acrescenta um item e \codigo{extend()} acrescenta todos os itens de outra sequência.
+
+\begin{exemplo}
+notas = [8.5, 7.0, 9.2, 5.5]
+notas.extend([6.0, 8.0])
+
+print(len(notas), sum(notas))     # 6 44.2
+print(min(notas), max(notas))     # 5.5 9.2
+print(sorted(notas, reverse=True))
+# [9.2, 8.5, 8.0, 7.0, 6.0, 5.5]
+\end{exemplo}
+
+Um dicionário permite recuperar campos pelo nome. \codigo{get()} fornece um valor padrão se a chave estiver ausente. \codigo{items()} percorre cada par de chave e valor. Use \codigo{in} para testar se uma chave está presente.
+
+\begin{exemplo}
+registro = {"nome": "Ana", "curso": "Estatistica", "nota": 8.5}
+
+print(registro.get("turma", "sem turma"))  # sem turma
+print("nota" in registro)                 # True
+for campo, valor in registro.items():
+    print(campo, valor)
+\end{exemplo}
+
+\subsection{Condicionais e laços}
+
+A indentação faz parte da sintaxe. As linhas indentadas pertencem ao bloco do \codigo{if}, do laço ou da função.
+
+\begin{exemplo}
+nota = 6.8
+if nota >= 7:
+    print("Aprovado")
+elif nota >= 5:
+    print("Recuperacao")
+else:
+    print("Reprovado")
+\end{exemplo}
+
+Use \codigo{for} para percorrer valores. \codigo{enumerate()} fornece a posição e o valor, e \codigo{zip()} reúne elementos correspondentes de duas sequências.
+
+\begin{exemplo}
+alunos = ["Ana", "Bruno", "Carla"]
+notas = [8.5, 7.0, 9.2]
+
+for i, aluno in enumerate(alunos):
+    print(i, aluno)
+
+for aluno, nota in zip(alunos, notas):
+    print(aluno, nota)
+\end{exemplo}
+
+\codigo{range()} produz uma sequência de inteiros para percorrer. Com início, fim e passo, o limite final é excluído. Por exemplo, \codigo{range(2, 9, 2)} fornece \(2,4,6,8\).
+
+\begin{exemplo}
+for dia in range(2, 9, 2):
+    print(dia)
+\end{exemplo}
+
+Uma compreensão de lista é adequada quando a transformação ou o filtro é simples. Já o \codigo{while} é útil quando a repetição depende de uma condição. Planeje como a condição terminará.
+
+\begin{exemplo}
+notas = [8.5, 7.0, 9.2, 5.5]
+aprovados = [nota for nota in notas if nota >= 7]
+print(aprovados)  # [8.5, 7.0, 9.2]
+
+erro = 1.0
+iteracao = 0
+while erro > 0.01 and iteracao < 10:
+    erro = erro / 2
+    iteracao += 1
+print(erro, iteracao)  # 0.0078125 7
+\end{exemplo}
+
+\needspace{9\baselineskip}
+\subsection{Matrizes com listas em Python}
+\label{sec:matrizes-python}
+
+Uma matriz organiza valores em linhas e colunas. Em Python, podemos representar uma matriz usando uma lista de listas. Cada lista interna é uma linha e todas as linhas têm a mesma quantidade de elementos. Na matriz abaixo, cada linha representa um aluno e cada coluna representa uma avaliação.
+
+\begin{exemplo}
+notas = [
+    [8.0, 7.5, 9.0],
+    [6.5, 8.0, 7.0],
+]
+
+print(len(notas), len(notas[0]))       # 2 linhas, 3 colunas
+print(notas[1][0])                     # 6.5
+print(notas[0])                        # [8.0, 7.5, 9.0]
+print([linha[1] for linha in notas])   # [7.5, 8.0]
+\end{exemplo}
+
+Em \codigo{notas[1][0]}, o primeiro índice escolhe a segunda linha e o segundo escolhe a primeira coluna. Para pegar uma coluna inteira, percorremos as linhas e usamos o mesmo índice em cada uma.
+
+Para somar duas matrizes de mesmo tamanho, somamos os valores da mesma posição. O primeiro \codigo{zip()} do exemplo junta as linhas correspondentes. O segundo junta os valores dentro de cada par de linhas.
+
+\begin{exemplo}
+a = [[1, 2], [3, 4]]
+b = [[5, 6], [7, 8]]
+
+soma = []
+for linha_a, linha_b in zip(a, b):
+    nova_linha = [x + y for x, y in zip(linha_a, linha_b)]
+    soma.append(nova_linha)
+
+print(soma)  # [[6, 8], [10, 12]]
+\end{exemplo}
+
+O operador \codigo{+} aplicado diretamente a duas listas concatena as listas. Para trabalhar com operações matriciais usando os operadores da linguagem, podemos converter as listas em arrays do NumPy, como na Seção \ref{sec:matrizes-numpy}.
+
+\subsection{Funções}
+
+Uma função dá nome a uma operação que pode ser reutilizada. \codigo{return} devolve o resultado para quem chamou a função. A função abaixo espera uma coleção numérica com pelo menos um valor.
+
+\begin{exemplo}
+def calcular_media(valores):
+    return sum(valores) / len(valores)
+
+notas = [8.5, 7.0, 9.2, 5.5]
+print(calcular_media(notas))  # 7.55
+\end{exemplo}
+
+Anotações de tipo e uma \emph{docstring} podem esclarecer a entrada e a saída esperadas.
+
+\begin{exemplo}
+def classificar_nota(nota: float) -> str:
+    """Classifica uma nota em tres faixas."""
+    if nota >= 7:
+        return "aprovado"
+    if nota >= 5:
+        return "recuperacao"
+    return "reprovado"
+\end{exemplo}
+
+\subsection{Parâmetros, argumentos e retorno}
+
+Parâmetros dão nomes às entradas de uma função. Na chamada, podemos passar um argumento pela posição ou pelo nome do parâmetro. Um valor padrão é usado quando o argumento correspondente é omitido.
+
+\begin{exemplo}
+def atingiu_criterio(nota, frequencia, nota_minima=7.0):
+    return nota >= nota_minima and frequencia >= 0.75
+
+print(atingiu_criterio(7.5, 0.80))  # True
+print(atingiu_criterio(7.5, 0.80, nota_minima=8.0))  # False
+\end{exemplo}
+
+O \codigo{return} entrega o valor para o restante do programa. Podemos guardá-lo em uma variável, usá-lo em uma condição ou passá-lo para outra função. \codigo{print()} só apresenta o valor na saída.
+
+Uma função pode devolver vários resultados em uma tupla. Neste exemplo, \codigo{resumir()} devolve o menor e o maior elemento. O teste inicial apresenta um erro claro para uma lista vazia, que não tem mínimo nem máximo.
+
+\begin{exemplo}
+def resumir(valores):
+    if not valores:
+        raise ValueError("Informe pelo menos um valor.")
+    return min(valores), max(valores)
+
+menor, maior = resumir([8.5, 7.0, 9.2, 5.5])
+print(f"Intervalo: {menor} a {maior}")  # Intervalo: 5.5 a 9.2
+\end{exemplo}
+
+\subsection{Importações e tratamento de erros}
+
+O comando \codigo{import} disponibiliza funções e objetos de um módulo. \codigo{from ... import ...} importa um objeto específico. A biblioteca padrão inclui módulos como \codigo{statistics}, usados para calcular médias e medianas sem instalar dependências adicionais.
+
+\begin{exemplo}
+from statistics import mean, median
+
+notas = [8.5, 7.0, 9.2, 5.5]
+print(round(mean(notas), 2))  # 7.55
+print(median(notas))          # 7.75
+\end{exemplo}
+
+Quando uma conversão pode falhar, \codigo{try} e \codigo{except} permitem tratar o tipo de erro esperado. No exemplo, a função retorna \codigo{None} para sinalizar que a nota não pôde ser lida. Um valor ausente tem um significado diferente de uma nota igual a zero.
+
+\begin{exemplo}
+def ler_nota(texto):
+    try:
+        return float(texto.strip().replace(",", "."))
+    except ValueError:
+        return None
+
+print(ler_nota(" 7,5 "))  # 7.5
+print(ler_nota("ausente"))  # None
+\end{exemplo}
+
+\codigo{is None} identifica o retorno ausente. Na Seção \ref{sec:ausentes}, veremos como o pandas representa e detecta valores ausentes em uma tabela.

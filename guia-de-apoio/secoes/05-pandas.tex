@@ -1,0 +1,208 @@
+\needspace{10\baselineskip}
+\section{Dados tabulares com pandas}
+\label{sec:pandas}
+
+Uma tabela reúne observações em linhas e variáveis em colunas. O pandas oferece ferramentas para carregar, inspecionar, transformar e resumir essas tabelas \cite{pandas}. A pergunta orienta quais colunas selecionar e como tratar dados ausentes.
+
+\subsection{Series, DataFrame e índice}
+
+Uma \codigo{Series} representa uma sequência de valores com rótulos. Um \codigo{DataFrame} organiza várias colunas com um índice de linhas. Em uma tabela importada de CSV, o índice normalmente começa em zero. Uma coluna como \codigo{id} continua sendo uma coluna até ser escolhida como índice.
+
+\begin{exemplo}
+import pandas as pd
+
+notas = pd.Series([8.5, 6.0], index=["Ana", "Bruno"])
+print(notas.loc["Ana"])  # 8.5
+
+registros = [
+    {"nome": "Ana", "curso": "Matematica", "nota": 8.5},
+    {"nome": "Bruno", "curso": "Computacao", "nota": 6.0},
+]
+tabela_exemplo = pd.DataFrame(registros)
+print(tabela_exemplo)
+\end{exemplo}
+
+Selecionar uma coluna por \codigo{tabela\_exemplo["nota"]} devolve uma \codigo{Series}. Passar uma lista de nomes, como em \codigo{tabela\_exemplo[["nota"]]}, mantém o formato de tabela.
+
+\subsection{Ler arquivos CSV}
+\label{sec:ler}
+
+Os exemplos a seguir usam \codigo{notas.csv}, com dados simulados de 18 participantes. Cada linha corresponde a um participante. Duas células vazias na coluna de nota representam valores ausentes.
+
+\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Coluna} & \textbf{Significado} \\
+\midrule
+\codigo{id} & Identificador fictício. \\
+\codigo{curso} & Matemática, Computação ou Estatística. \\
+\codigo{horas\_estudo} & Tempo de estudo em horas. \\
+\codigo{frequencia} & Proporção de presença, como \(0{,}75\) para \(75\%\). \\
+\codigo{nota} & Nota em escala de 0 a 10. \\
+\bottomrule
+\end{tabularx}
+
+O bloco procura primeiro o arquivo na pasta \codigo{dados/}. Se o arquivo foi enviado diretamente pelo painel Arquivos do Colab, o caminho usado é \codigo{notas.csv}.
+
+\begin{exemplo}
+from pathlib import Path
+import pandas as pd
+
+caminho = Path("dados/notas.csv")
+if not caminho.is_file():
+    caminho = Path("notas.csv")
+
+df = pd.read_csv(caminho)
+print(df.shape)  # (18, 5)
+\end{exemplo}
+
+\nota{Separador e marca decimal}{Se outro CSV usar ponto e vírgula entre campos e vírgula para decimais, passe \codigo{sep=";"} e \codigo{decimal=","} para \codigo{pd.read\_csv()}. A base deste guia usa vírgula entre campos e ponto decimal.}
+
+\subsection{Inspecionar linhas, tipos e valores}
+
+Os exemplos abaixo usam \codigo{df}, carregado na Seção \ref{sec:ler}. \codigo{head()} e \codigo{tail()} mostram o início e o fim da tabela. \codigo{info()} exibe uma visão geral das colunas e de seus valores presentes. \codigo{describe()} calcula um resumo das colunas numéricas selecionadas.
+
+\begin{exemplo}
+print(df.head(3))
+print(df.tail(2))
+print(df.columns.tolist())
+df.info()
+
+variaveis = ["horas_estudo", "frequencia", "nota"]
+print(df[variaveis].describe().round(2))
+print(df["curso"].value_counts())
+\end{exemplo}
+
+A saída de \codigo{describe()} inclui contagem, média, desvio padrão, mínimo, quartis e máximo. Para \codigo{nota}, a contagem é \(16\), pois duas notas estão ausentes. \codigo{value\_counts()} mostra que cada curso tem seis registros antes de qualquer filtro.
+
+\subsection{Selecionar, filtrar e ordenar}
+\label{sec:filtros}
+
+\codigo{iloc} seleciona por posição. No fatiamento \codigo{df.iloc[:3]}, a posição final é excluída. \codigo{loc} seleciona por rótulo ou condição booleana. Para obter algumas colunas depois de filtrar, passe os nomes no segundo argumento \cite{pandas}.
+
+\begin{exemplo}
+print(df["nota"].head(3))  # Series
+print(df[["curso", "nota"]].head(3))  # DataFrame
+print(df.iloc[:3, :2])    # Primeiras 3 linhas e 2 colunas
+print(df.loc[0, "nota"])  # 5.9
+\end{exemplo}
+
+Cada comparação aplicada a uma coluna devolve uma sequência de booleanos. Use \codigo{\&} para exigir as duas condições, \codigo{\textbar} para aceitar pelo menos uma e \codigo{\textasciitilde} para inverter uma condição. Coloque cada comparação entre parênteses.
+
+\begin{exemplo}
+criterio = (df["nota"] >= 7) & (df["frequencia"] >= 0.75)
+selecionados = df.loc[criterio, ["curso", "nota", "frequencia"]]
+ordenados = selecionados.sort_values("nota", ascending=False)
+
+print(len(selecionados))  # 11
+print(ordenados.head(3))
+\end{exemplo}
+
+\codigo{sort\_values()} ordena pelas colunas informadas. Neste caso, \codigo{ascending=False} coloca as notas maiores no início. Para selecionar cursos específicos, passe uma lista de nomes a \codigo{isin()}. Por exemplo, \codigo{df["curso"].isin(cursos)} devolve uma máscara que pode ser usada em \codigo{loc}.
+
+\subsection{Detectar e tratar valores ausentes}
+\label{sec:ausentes}
+
+\codigo{isna()} marca células ausentes e \codigo{isna().sum()} conta quantas existem por coluna. Neste exemplo, a média de notas usa apenas os registros com nota observada. A seleção é mantida em \codigo{df\_validas}, e \codigo{df} permanece disponível para inspecionar os registros de origem.
+
+\begin{exemplo}
+print(df.isna().sum())
+print(df.loc[df["nota"].isna(), ["id", "curso"]])
+
+df_validas = df.dropna(subset=["nota"]).copy()
+print(len(df), len(df_validas))  # 18 16
+\end{exemplo}
+
+\codigo{fillna()} preenche ausentes com um valor escolhido. Um exemplo legítimo é exibir um rótulo explícito para uma informação textual ausente. O preenchimento de notas com zero ou com a média mudaria a distribuição. A decisão depende do que significa a ausência e da pergunta em análise.
+
+\begin{exemplo}
+import pandas as pd
+
+turnos = pd.Series(["Manha", None, "Noite"])
+print(turnos.fillna("Nao informado").tolist())
+# ['Manha', 'Nao informado', 'Noite']
+\end{exemplo}
+
+\subsection{Converter tipos e criar colunas}
+
+\codigo{pd.to\_numeric()} converte valores numéricos armazenados como texto. Com \codigo{errors="coerce"}, o pandas sinaliza como ausente o que não conseguiu converter. Compare a origem e o resultado para identificar as entradas problemáticas.
+
+\begin{exemplo}
+import pandas as pd
+
+texto = pd.Series(["8.5", "7.0", "sem nota"])
+numeros = pd.to_numeric(texto, errors="coerce")
+print(numeros.tolist())  # [8.5, 7.0, nan]
+print(texto[numeros.isna() & texto.notna()].tolist())  # ['sem nota']
+\end{exemplo}
+
+Uma operação aritmética pode transformar uma coluna inteira. Quando existe uma regra com vários casos, \codigo{apply()} chama uma função para cada valor da coluna. O exemplo usa \codigo{df\_validas} e uma classificação fictícia.
+
+\begin{exemplo}
+def classificar(nota):
+    if nota >= 7:
+        return "aprovado"
+    if nota >= 5:
+        return "recuperacao"
+    return "reprovado"
+
+df_validas["frequencia_pct"] = df_validas["frequencia"] * 100
+df_validas["situacao"] = df_validas["nota"].apply(classificar)
+print(df_validas[["nota", "frequencia_pct", "situacao"]].head(3))
+\end{exemplo}
+
+\subsection{Agrupar e calcular estatísticas}
+\label{sec:agrupar}
+
+\codigo{groupby()} separa a tabela em grupos. A agregação combina os valores de cada grupo em uma medida, como média ou contagem. No exemplo, \codigo{agg()} calcula quatro medidas para a nota de cada curso.
+
+\begin{exemplo}
+resumo = (
+    df_validas.groupby("curso")["nota"]
+    .agg(["count", "mean", "median", "std"])
+    .reset_index()
+)
+print(resumo.round(2).to_string(index=False))
+\end{exemplo}
+
+Os grupos têm seis, cinco e cinco notas válidas, respectivamente para Computação, Estatística e Matemática. Use essas contagens ao interpretar as médias de \(7{,}87\), \(7{,}34\) e \(7{,}48\). \codigo{std} usa divisor \(n-1\) por padrão, de modo que um grupo com uma única observação válida tem desvio padrão amostral indefinido \cite{pandas}.
+
+\begin{exemplo}
+quartis = df_validas["nota"].quantile([0.25, 0.5, 0.75])
+print(quartis)
+# 0.25    6.625
+# 0.50    7.650
+# 0.75    8.500
+\end{exemplo}
+
+\codigo{count()} conta os valores presentes da coluna selecionada. Para contar as linhas de cada grupo antes de remover notas ausentes, use \codigo{df.groupby("curso").size()}.
+
+\subsection{Juntar tabelas por uma chave}
+
+\codigo{merge()} usa uma coluna comum para combinar tabelas. Uma junção \codigo{inner} retém as chaves presentes em ambas. Uma junção \codigo{left} preserva todas as linhas da tabela da esquerda e preenche com ausentes as colunas da direita quando não há correspondência.
+
+\begin{exemplo}
+import pandas as pd
+
+alunos = pd.DataFrame({"id": [1, 2, 3], "nome": ["Ana", "Bruno", "Carla"]})
+notas = pd.DataFrame({"id": [1, 3], "nota": [8.5, 9.2]})
+
+completo = alunos.merge(notas, on="id", how="left",
+                        validate="one_to_one")
+print(completo)
+\end{exemplo}
+
+O participante com \codigo{id=2} permanece na tabela, com nota ausente. \codigo{validate="one\_to\_one"} exige que cada chave apareça no máximo uma vez em cada tabela. Sem essa verificação, chaves repetidas podem aumentar o número de linhas da junção.
+
+\subsection{Exportar resultados}
+
+O resumo da Seção \ref{sec:agrupar} usa \codigo{reset\_index()} para transformar o índice dos grupos na coluna \codigo{curso}. Assim, \codigo{index=False} descarta apenas o índice numérico da tabela exportada \cite{pandas}.
+
+\begin{exemplo}
+resumo.to_csv("resumo.csv", index=False)
+
+conferido = pd.read_csv("resumo.csv")
+print(conferido.columns.tolist())
+# ['curso', 'count', 'mean', 'median', 'std']
+\end{exemplo}
+
+O arquivo é escrito na pasta de trabalho da sessão. No Colab, ele pode ser baixado pelo painel Arquivos. A leitura de conferência ajuda a verificar que cada linha do resultado continua identificada pelo curso.

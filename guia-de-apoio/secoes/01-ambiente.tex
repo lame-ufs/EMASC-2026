@@ -1,0 +1,86 @@
+\clearpage
+\section{Introdução e preparação do ambiente}
+\label{sec:ambiente}
+
+Preparei este guia como material de apoio para quem está começando a estudar Ciência de Dados. A ideia é reunir em um só lugar os conceitos básicos e os exemplos que ajudam na hora de escrever código, analisar uma tabela ou fazer um gráfico. Usei os notebooks da LAME como ponto de partida \cite{lame-python,lame-pandas}.
+
+\subsection{Como usar os exemplos}
+
+Se você nunca usou Python, vale começar pela preparação do ambiente. Depois dos primeiros exemplos, fica mais fácil entender o que as bibliotecas fazem com os dados. Se já conhece o básico e quer lembrar de um comando, pode ir direto ao assunto pelo sumário.
+
+Em um \emph{notebook}, você escreve o código em células e vê o resultado logo abaixo. Alguns exemplos usam variáveis definidas antes. Nesses casos, o texto aponta para a seção em que elas aparecem. Se reiniciar a sessão, rode de novo as células que importam as bibliotecas e carregam os dados.
+
+\subsection{Google Colab}
+
+Dá para começar pelo \href{https://colab.research.google.com/}{Google Colab}, direto no navegador. Crie um notebook e rode o bloco abaixo. Se tudo estiver funcionando, você vai ver o número \codigo{5} e, na linha seguinte, a versão do pandas.
+
+\begin{exemplo}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+print(2 + 3)           # 5
+print(pd.__version__)  # Versao do pandas no ambiente
+\end{exemplo}
+
+Os exemplos com tabelas e gráficos usam \codigo{notas.csv}, que está na pasta \codigo{dados/} do guia. No Colab, abra o painel \textbf{Arquivos} e envie o CSV. Se ele estiver em outra pasta, use o caminho que aparece no painel. Se a sessão for recriada, envie o arquivo de novo.
+
+\begin{exemplo}
+from pathlib import Path
+
+print(Path.cwd())                 # Pasta de trabalho da sessao
+print(Path("notas.csv").exists()) # True apos o envio do CSV
+\end{exemplo}
+
+\nota{Dependências em notebooks}{Se uma biblioteca necessária estiver ausente no Colab ou no Jupyter, instale-a em uma célula com \codigo{\%pip install} seguido do nome do pacote. Por exemplo, \codigo{\%pip install scipy} instala a biblioteca usada na seção de probabilidade.}
+
+\subsection{Python e Jupyter no computador}
+
+Instale o Python antes de configurar o editor \cite{python}. O VS Code pode executar scripts \codigo{.py} e notebooks \codigo{.ipynb} com as extensões Python e Jupyter. Para conferir a instalação, use \verb|py --version| no Windows ou \verb|python3 --version| no Linux ou macOS.
+
+Abra o terminal na pasta do guia e crie um ambiente virtual. Assim, as bibliotecas que você instalar aqui ficam separadas das de outros projetos. No Windows, use estes comandos no PowerShell.
+
+\begin{exemplo}[language={},title={Windows (PowerShell)}]
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+\end{exemplo}
+
+No Prompt de Comando, a ativação é feita com \path{.venv\Scripts\activate.bat}. No Linux ou macOS, use o bloco a seguir.
+
+\begin{exemplo}[language={},title={Linux ou macOS}]
+python3 -m venv .venv
+source .venv/bin/activate
+\end{exemplo}
+
+Com o ambiente ativado, instale as bibliotecas no mesmo Python em que os exemplos serão executados.
+
+\begin{exemplo}[language={},title={Terminal}]
+python -m pip install numpy pandas matplotlib scipy jupyter
+\end{exemplo}
+
+No VS Code, selecione o interpretador da pasta \codigo{.venv}. Em um notebook, selecione também o kernel que usa esse ambiente. Para abrir um notebook pelo navegador a partir do terminal, execute \codigo{jupyter notebook} com o ambiente ativado \cite{jupyter}.
+
+Se você abriu o notebook na pasta do guia, o caminho do arquivo é \codigo{dados/notas.csv}. O bloco abaixo mostra qual Python está rodando, em que pasta ele está procurando o arquivo e se o CSV foi encontrado.
+
+\begin{exemplo}
+from pathlib import Path
+import sys
+
+print(sys.executable)
+print(Path.cwd())
+print(Path("dados/notas.csv").is_file())
+\end{exemplo}
+
+\subsection{Erros comuns de preparação}
+
+\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Mensagem} & \textbf{O que verificar} \\
+\midrule
+\codigo{ModuleNotFoundError} & Confirme o interpretador ou kernel e a instalação do pacote nesse ambiente. \\
+\codigo{FileNotFoundError} & Confira a pasta de trabalho, o nome do arquivo e o caminho passado para a leitura. \\
+\codigo{NameError} & Confira o nome da variável e se a célula que a define já foi executada. \\
+\bottomrule
+\end{tabularx}
+
+Para registrar as versões instaladas em um ambiente local, o comando \codigo{python -m pip freeze > requirements.txt} cria uma lista das dependências. Em outro ambiente, \codigo{python -m pip install -r requirements.txt} instala as versões registradas.

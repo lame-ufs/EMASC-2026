@@ -1,0 +1,93 @@
+\clearpage
+\section{Consulta rápida}
+
+\subsection{Python}
+
+\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Comando} & \textbf{Uso} \\
+\midrule
+\codigo{type(x)} & Consultar o tipo de um objeto. \\
+\codigo{int(x)}, \codigo{float(x)}, \codigo{str(x)} & Converter tipos. \\
+\codigo{texto.strip()}, \codigo{texto.split(",")} & Remover espaços nas extremidades ou dividir o texto. \\
+\codigo{len(valores)}, \codigo{sum(valores)} & Contar itens ou somar valores. \\
+\codigo{min(valores)}, \codigo{max(valores)} & Obter os valores extremos. \\
+\codigo{sorted(valores)} & Criar uma lista ordenada. \\
+\codigo{lista.append(x)}, \codigo{lista.extend(xs)} & Acrescentar um item ou os itens de outra sequência. \\
+\codigo{matriz[i][j]} & Selecionar a entrada da linha \(i\) e da coluna \(j\) em uma lista de listas. \\
+\codigo{dicionario.get(chave, padrao)} & Ler uma chave com valor padrão para ausência. \\
+\codigo{range(inicio, fim, passo)} & Gerar inteiros até antes do limite final. \\
+\codigo{enumerate(valores)}, \codigo{zip(a, b)} & Percorrer posições e itens ou combinar itens correspondentes. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{NumPy}
+
+\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Comando} & \textbf{Uso} \\
+\midrule
+\codigo{np.array(lista)} & Criar um array. \\
+\codigo{arr.shape}, \codigo{arr.ndim}, \codigo{arr.dtype} & Consultar formato, número de dimensões e tipo dos elementos. \\
+\codigo{np.zeros((l, c))}, \codigo{np.ones(n)} & Criar uma matriz de zeros ou um vetor de uns. \\
+\codigo{np.arange(a, b, p)} & Gerar valores com passo \(p\). Para passos inteiros, \(b\) é excluído. \\
+\codigo{np.linspace(a, b, n)} & Gerar \(n\) pontos, incluindo as extremidades por padrão. \\
+\codigo{arr.reshape(l, c)} & Reorganizar um array em \(l\) linhas e \(c\) colunas. \\
+\codigo{arr[:, 1]} & Selecionar a segunda coluna de uma matriz. \\
+\codigo{a.T}, \codigo{a @ b} & Obter a transposta e o produto matricial. \\
+\codigo{arr[arr >= 7]} & Selecionar elementos que satisfazem uma condição. \\
+\codigo{arr.sum(axis=0)} & Somar os valores de cada coluna de uma matriz. \\
+\codigo{np.mean(arr)}, \codigo{np.median(arr)} & Calcular média e mediana. \\
+\codigo{np.nanmean(arr)} & Calcular a média desconsiderando \codigo{NaN}. \\
+\codigo{np.std(arr, ddof=1)} & Calcular desvio padrão com divisor \(n-1\). \\
+\codigo{np.percentile(arr, q)} & Calcular o percentil \(q\). \\
+\codigo{np.corrcoef(x, y)} & Calcular a matriz de correlação de Pearson. \\
+\bottomrule
+\end{tabularx}
+
+\clearpage
+\subsection{pandas}
+
+\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Comando} & \textbf{Uso} \\
+\midrule
+\codigo{pd.read\_csv(caminho)} & Ler uma tabela de um arquivo CSV. \\
+\codigo{df.head()}, \codigo{df.info()} & Ver primeiras linhas, tipos e contagens de valores presentes. \\
+\codigo{df.shape}, \codigo{df.columns} & Consultar dimensões e nomes das colunas. \\
+\codigo{df.describe()} & Resumir as colunas numéricas. \\
+\codigo{df["curso"].value\_counts()} & Contar ocorrências de cada categoria. \\
+\codigo{df.iloc[:3]}, \codigo{df.loc[0, "nota"]} & Selecionar por posição ou por rótulo. \\
+\codigo{df.loc[df["nota"] >= 7]} & Selecionar linhas por condição. \\
+\codigo{df.sort\_values("nota")} & Ordenar linhas por nota. \\
+\codigo{df.isna().sum()} & Contar valores ausentes por coluna. \\
+\codigo{df.dropna(subset=["nota"])} & Remover linhas cuja nota está ausente. \\
+\codigo{serie.fillna(valor)} & Preencher valores ausentes. \\
+\codigo{pd.to\_numeric(serie, errors="coerce")} & Converter uma série e marcar entradas inválidas como ausentes. \\
+\codigo{df.groupby("curso")["nota"].mean()} & Calcular a média por curso. \\
+\codigo{df.merge(outro, on="id")} & Juntar tabelas pela chave \codigo{id}. \\
+\codigo{df.to\_csv("saida.csv", index=False)} & Exportar as colunas sem o índice. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Matplotlib}
+
+\noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Comando} & \textbf{Uso} \\
+\midrule
+\codigo{plt.subplots()} & Criar figura e eixos. \\
+\codigo{ax.plot(x, y)} & Mostrar a evolução de valores ordenados. \\
+\codigo{ax.bar(categorias, alturas)} & Comparar valores por categoria. \\
+\codigo{ax.hist(valores, bins=limites)} & Mostrar a distribuição numérica em intervalos. \\
+\codigo{ax.boxplot(valores)} & Resumir mediana, quartis e observações extremas. \\
+\codigo{ax.scatter(x, y)} & Visualizar a relação entre duas variáveis numéricas. \\
+\codigo{ax.set(title=..., xlabel=..., ylabel=...)} & Definir título e rótulos dos eixos. \\
+\codigo{label="Série"}, \codigo{ax.legend()} & Nomear cada série ao desenhá-la e exibir a legenda. \\
+\codigo{fig.savefig("grafico.png", dpi=200)} & Salvar a figura em um arquivo. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Onde continuar}
+
+O tutorial oficial do Python em português é uma referência para sintaxe e biblioteca padrão \cite{python}. Consulte a documentação de NumPy, pandas, Matplotlib e SciPy para entender parâmetros e exemplos de uso \cite{numpy,pandas,matplotlib,scipy}. A documentação do Project Jupyter apresenta os ambientes e formatos usados nos notebooks \cite{jupyter}.
