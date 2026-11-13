@@ -68,6 +68,8 @@ Cada integrante fará commits diretamente no [repositório no GitHub](https://gi
 EMASC-2026/
 ├── assets/
 │   └── logo-lame.png
+├── Data/
+│   └── estatistica/
 ├── slides/
 │   ├── python/
 │   ├── estatistica/
