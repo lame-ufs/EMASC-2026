@@ -78,6 +78,7 @@ EMASC-2026/
 │   ├── python/
 │   ├── estatistica/
 │   └── ciencia-de-dados/
+├── Notebooks/
 ├── exercicios/
 │   ├── atividades/
 │   └── gabaritos/
