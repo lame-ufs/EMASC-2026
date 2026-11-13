@@ -27,7 +27,7 @@ Selecionar uma coluna por \codigo{tabela\_exemplo["nota"]} devolve uma \codigo{S
 \subsection{Ler arquivos CSV}
 \label{sec:ler}
 
-Os exemplos a seguir usam \codigo{notas.csv}, com dados simulados de 18 participantes. Cada linha corresponde a um participante. Duas células vazias na coluna de nota representam valores ausentes.
+A base simulada está disponível em \baixarcsv{}, no painel \textbf{Anexos} do PDF e na pasta \codigo{dados/} do pacote de distribuição. Ela contém 18 participantes. Cada linha corresponde a um participante. Duas células vazias na coluna de nota representam valores ausentes.
 
 \noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
 \toprule
@@ -112,7 +112,11 @@ por_curso = df.loc[df["curso"].isin(cursos)]
 print(len(um_criterio))  # 14
 print(len(com_nota))    # 16
 print(len(por_curso))   # 12
+print(um_criterio.loc[um_criterio["nota"].isna(), "id"].tolist())
+# [6, 18]
 \end{exemplo}
+
+Os registros de identificadores \(6\) e \(18\) entram em \codigo{um\_criterio} porque atingem o limite de presença, mesmo com nota ausente. Os \(14\) registros selecionados atendem a pelo menos um critério. Para analisar apenas registros com nota observada, a máscara também deve exigir \codigo{df["nota"].notna()}.
 
 \subsection{Detectar e tratar valores ausentes}
 \label{sec:ausentes}

@@ -6,6 +6,10 @@ O [guia em PDF](guia_lame.pdf) reúne explicações e exemplos comentados sobre 
 
 A [base simulada de notas](dados/notas.csv) contém 18 participantes fictícios. Em um notebook local, trabalhe a partir desta pasta. No [Google Colab](https://colab.research.google.com/), envie o CSV pelo painel **Arquivos**. O exemplo de leitura aceita o arquivo em `dados/notas.csv` ou em `notas.csv`.
 
+## Ambiente local
+
+O ambiente de referência usa Python 3.14.7. A instalação das bibliotecas nas versões registradas é feita com `python -m pip install -r requirements.txt`.
+
 ## Edição e compilação
 
 - `guia_lame.tex` é o arquivo principal.
@@ -20,4 +24,4 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build guia_lame.tex
 Copy-Item build/guia_lame.pdf guia_lame.pdf
 ~~~
 
-Para atualizar um gráfico, execute seu exemplo no capítulo de Matplotlib ou no de exemplos de análise de dados e chame `fig.savefig()` antes de `plt.show()`, usando o arquivo indicado no comando `includegraphics` da mesma seção.
+Para atualizar um gráfico, execute seu exemplo no capítulo de Matplotlib ou no de exemplos de análise de dados e chame `.savefig()` no objeto da figura antes de `plt.show()`, usando o arquivo indicado no comando `includegraphics` da mesma seção.

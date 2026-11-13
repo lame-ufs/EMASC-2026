@@ -25,13 +25,13 @@ print(2 + 3)           # 5
 print(pd.__version__)  # Versao do pandas no ambiente
 \end{exemplo}
 
-Os exemplos com tabelas e gráficos usam \codigo{notas.csv}, disponível na pasta \codigo{dados/} do guia. O envio do arquivo é feito pelo painel \textbf{Arquivos} do Colab. Se o arquivo estiver em outra pasta, a leitura deve usar o caminho exibido no painel. O envio precisa ser repetido quando uma nova sessão for iniciada.
+Os exemplos com tabelas e gráficos usam \codigo{notas.csv}. O link \baixarcsv{} fica acessível ao público quando o repositório for aberto. O arquivo também está no painel \textbf{Anexos} do leitor de PDF e na pasta \codigo{dados/} do pacote de distribuição. No Colab, o envio é feito pelo painel \textbf{Arquivos} a cada nova sessão.
 
 \nota{Dependências em notebooks}{Uma biblioteca ausente pode ser instalada em uma célula com \codigo{\%pip install} seguido do nome do pacote. Por exemplo, \codigo{\%pip install scipy} instala a biblioteca usada na seção de probabilidade.}
 
 \subsection{Python e Jupyter no computador}
 
-A execução local começa com a instalação do Python \cite{python}. O VS Code pode executar scripts \codigo{.py} e notebooks \codigo{.ipynb} com as extensões Python e Jupyter. Os comandos \verb|py --version| no Windows e \verb|python3 --version| no Linux ou macOS mostram a versão instalada.
+A execução local começa com a instalação do Python \cite{python}. O ambiente de referência usa Python 3.14.7. O VS Code pode executar scripts \codigo{.py} e notebooks \codigo{.ipynb} com as extensões Python e Jupyter. Os comandos \verb|py --version| no Windows e \verb|python3 --version| no Linux ou macOS mostram a versão instalada.
 
 Na pasta do guia, um ambiente virtual mantém as bibliotecas do projeto separadas das de outras instalações. No Windows, os comandos abaixo criam e ativam esse ambiente no PowerShell.
 
@@ -47,10 +47,10 @@ python3 -m venv .venv
 source .venv/bin/activate
 \end{exemplo}
 
-Com o ambiente ativado, o comando abaixo instala as bibliotecas na mesma instalação do Python usada para executar os exemplos.
+Com o ambiente ativado, o comando abaixo instala as versões de referência das bibliotecas a partir de \codigo{requirements.txt}, incluído no pacote de distribuição.
 
 \begin{exemplo}[language={},title={Terminal}]
-python -m pip install numpy pandas matplotlib scipy jupyter
+python -m pip install -r requirements.txt
 \end{exemplo}
 
 No VS Code, o interpretador deve apontar para a pasta \codigo{.venv}. Em notebooks, o \emph{kernel} é o processo que executa as células e deve usar esse mesmo ambiente. O comando \codigo{jupyter notebook}, executado com o ambiente ativo, abre o Jupyter no navegador \cite{jupyter}.
@@ -69,4 +69,4 @@ Ao iniciar o notebook na pasta do guia, o arquivo de dados fica acessível pelo 
 \bottomrule
 \end{tabularx}
 
-O comando \codigo{python -m pip freeze > requirements.txt} registra os pacotes e as versões instaladas no ambiente. Em outro ambiente, \codigo{python -m pip install -r requirements.txt} instala as versões registradas.
+O comando \codigo{python -m pip show} seguido do nome de um pacote mostra a versão instalada no ambiente ativo.

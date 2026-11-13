@@ -148,7 +148,7 @@ plt.show()
 O gráfico tem quatro notas de \(7\) a menos de \(8\) e outras quatro de \(8\) a menos de \(9\). Cada intervalo contém \(4/16=25\%\) das notas observadas, e os dois juntos concentram \(50\%\).
 \end{minipage}
 
-A largura dos intervalos muda o que fica visível. Com poucos intervalos, detalhes podem ser agregados. Com muitos, uma base pequena pode produzir várias barras vazias. Ao comparar dois histogramas, usar os mesmos limites facilita a leitura.
+A largura dos intervalos muda o que fica visível. Com poucos intervalos, detalhes podem ser agregados. Com muitos, uma base pequena pode produzir várias barras vazias. Ao comparar dois histogramas, usar os mesmos limites facilita a leitura. Valores fora desses limites ficam de fora do gráfico. Se \(n\) continua sendo o total original, as frequências \(n_j/n\) podem somar menos de \(100\%\).
 
 \needspace{33\baselineskip}
 \subsection{Boxplot}
@@ -193,7 +193,7 @@ A mediana é \(7{,}65\). A caixa delimita a metade central dos dados, entre \(6{
 \begin{exemplo}
 import matplotlib.pyplot as plt
 
-fig, ax = plt.subplots(figsize=(6.3, 3.6), layout="constrained")
+fig_dispersao, ax = plt.subplots(figsize=(6.3, 3.6), layout="constrained")
 ax.scatter(df_validas["horas_estudo"], df_validas["nota"],
            color="#19476B", alpha=0.85)
 ax.set(title="Horas de estudo e nota",
@@ -208,7 +208,7 @@ plt.show()
 
 \noindent\begin{minipage}{\linewidth}
 \centering
-\includegraphics[width=0.66\linewidth]{figuras/dispersao.pdf}
+\includegraphics[width=0.62\linewidth]{figuras/dispersao.pdf}
 
 \raggedright
 A tendência ascendente e \(r=0{,}96\) indicam associação linear positiva na base simulada. Esse resultado, sozinho, é insuficiente para estabelecer causalidade.
@@ -216,11 +216,11 @@ A tendência ascendente e \(r=0{,}96\) indicam associação linear positiva na b
 
 \subsection{Salvar figuras}
 
-\codigo{fig.savefig()} salva a figura \codigo{fig} criada no exemplo de dispersão. A extensão determina o formato. PNG gera uma imagem em pixels, e PDF preserva os elementos vetoriais do gráfico.
+\codigo{fig\_dispersao.savefig()} salva a figura de dispersão mesmo após a criação de outros gráficos. A extensão define o formato: PNG para imagem em pixels e PDF para preservar elementos vetoriais.
 
 \begin{exemplo}
-fig.savefig("dispersao.png", dpi=200, bbox_inches="tight")
-fig.savefig("dispersao.pdf", bbox_inches="tight")
+fig_dispersao.savefig("dispersao.png", dpi=200, bbox_inches="tight")
+fig_dispersao.savefig("dispersao.pdf", bbox_inches="tight")
 \end{exemplo}
 
-Em um script, a gravação pode ser feita antes de \codigo{plt.show()}. No Colab, os arquivos salvos ficam disponíveis no painel Arquivos.
+Em scripts, a gravação pode preceder \codigo{plt.show()}. No Colab, os arquivos ficam no painel \textbf{Arquivos}.

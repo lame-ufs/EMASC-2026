@@ -382,8 +382,10 @@ Na sequência de Fibonacci, o índice \(n\) é um inteiro não negativo. Os dois
 
 \begin{exemplo}
 def fibonacci(n):
+    if type(n) is not int:
+        raise TypeError("n deve ser um inteiro.")
     if n < 0:
-        raise ValueError("n deve ser um inteiro nao negativo.")
+        raise ValueError("n deve ser nao negativo.")
     if n <= 1:
         return n
     return fibonacci(n - 1) + fibonacci(n - 2)
@@ -393,6 +395,8 @@ print(fibonacci(7))  # 13
 print([fibonacci(n) for n in range(8)])
 # [0, 1, 1, 2, 3, 5, 8, 13]
 \end{exemplo}
+
+A função gera \codigo{TypeError} se a entrada não for um inteiro, como em \codigo{fibonacci(0.5)}, e \codigo{ValueError} se o inteiro for negativo.
 
 A chamada \codigo{fibonacci(5)} soma \(F_4=3\) e \(F_3=2\). As chamadas continuam até \(n=0\) ou \(n=1\). A implementação é adequada para estudar a recursão com índices pequenos. Para índices maiores, um laço que guarda os dois últimos termos evita recalcular termos já obtidos.
 
