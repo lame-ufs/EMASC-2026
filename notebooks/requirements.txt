@@ -1,0 +1,2 @@
+-r ../guia-de-apoio/requirements.txt
+seaborn==0.13.2
