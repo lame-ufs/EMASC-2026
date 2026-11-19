@@ -59,14 +59,18 @@ Ao iniciar o notebook na pasta do guia, o arquivo de dados fica acessível pelo 
 
 \subsection{Erros comuns de preparação}
 
+Ao ocorrer um erro, a última linha da mensagem geralmente indica seu tipo e a informação necessária para iniciar a correção.
+
 \noindent\begin{tabularx}{\linewidth}{@{}lX@{}}
 \toprule
-\textbf{Mensagem} & \textbf{O que verificar} \\
+\textbf{Mensagem} & \textbf{Causa e como corrigir} \\
 \midrule
-\codigo{ModuleNotFoundError} & Instalação do pacote no ambiente usado pelo interpretador ou kernel. \\
-\codigo{FileNotFoundError} & Pasta de trabalho, nome do arquivo e caminho informado. \\
-\codigo{NameError} & Nome da variável e execução da célula que a define. \\
+\codigo{ModuleNotFoundError} & O módulo não foi encontrado. Para instalar a SciPy, por exemplo, execute \codigo{\%pip install scipy} em uma célula do notebook. No computador, ative o ambiente virtual e repita a instalação da Seção 1.3. Consulte o \href{https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/}{guia de instalação de pacotes}. \\
+\addlinespace
+\codigo{FileNotFoundError} & Confira o nome e o caminho do arquivo. No Colab, envie o CSV pelo painel \textbf{Arquivos}. No computador, abra o notebook na pasta do guia e use \codigo{dados/notas.csv}. Para verificar a pasta atual, importe \codigo{Path} com \codigo{from pathlib import Path} e execute \codigo{print(Path.cwd())}. Consulte \href{https://docs.python.org/pt-br/3.14/library/pathlib.html}{caminhos de arquivos}. \\
+\addlinespace
+\codigo{NameError} & O nome usado ainda não foi definido ou está escrito incorretamente. Confira a grafia (inclusive maiúsculas e minúsculas) e execute primeiro a célula que define a variável. Após reiniciar a sessão, execute as células anteriores em ordem. Consulte \href{https://docs.python.org/pt-br/3.14/tutorial/errors.html}{erros e exceções em Python}. \\
 \bottomrule
 \end{tabularx}
 
-O comando \codigo{python -m pip show} seguido do nome de um pacote mostra a versão instalada no ambiente ativo.
+\nota{Se o erro persistir}{Pesquise o texto completo da mensagem nas documentações indicadas. No terminal, \codigo{python -m pip show scipy} verifica a instalação da SciPy. Se estiver instalada e o erro continuar no notebook, confira o kernel selecionado. Consulte \href{https://jupyter-notebook.readthedocs.io/en/stable/troubleshooting.html}{as soluções de problemas do Jupyter}.}

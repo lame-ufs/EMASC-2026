@@ -1,6 +1,7 @@
 /build/
 /.ipynb_checkpoints/
 /resumo.csv
+/dispersao.png
 
 # Arquivos auxiliares gerados quando o editor compila na pasta do guia.
 /guia_lame.aux
