@@ -1,0 +1,35 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\graphicspath{{../../assets/}}
+\makeatletter
+\IfFileExists{beamerthemeEMASC.sty}{}{\def\input@path{{../modelo/}}}
+\makeatother
+\usetheme{EMASC}
+
+\setlength{\parskip}{0.35em}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.08}
+\lstset{style=EMASC,language=Python}
+\hypersetup{colorlinks=true,urlcolor=emascPurple,linkcolor=emascPurple,pdfencoding=auto}
+\urlstyle{same}
+\renewcommand*{\HyperDestNameFilter}[1]{python.#1}
+
+\title{Introdução a Python}
+\institute{Liga Acadêmica Matemática \& Empresa}
+\date{EMASC 2026}
+\AtBeginSection[]{\EMASCsectionpage{INTRODUÇÃO A PYTHON}}
+
+\begin{document}
+
+\input{secoes/00-abertura}
+\input{secoes/01-variaveis-e-operadores}
+\input{secoes/02-controle-e-funcoes}
+\input{secoes/03-listas-tuplas-e-dicionarios}
+\input{secoes/04-vetores-e-matrizes}
+\input{secoes/05-referencias}
+
+\end{document}

@@ -1,0 +1,182 @@
+\section{Variáveis e operadores}
+
+\begin{frame}[fragile,t]{1. Variáveis}
+O que são? Variáveis são nomes associados a valores armazenados durante a execução do programa. Em Python, não é necessário declarar previamente o tipo da variável.\par
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.46\textwidth}
+\EMASCcodelabel{Estrutura do comando}
+\begin{lstlisting}
+nome_da_variavel = valor
+\end{lstlisting}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{visibleenv}<2->
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+nome = "Carlos"
+idade = 20
+altura = 1.75
+
+print(nome)
+print(idade)
+print(altura)
+\end{lstlisting}
+\end{visibleenv}
+\end{column}
+\end{columns}
+\begin{visibleenv}<3->
+\begin{EMASCnote}
+Neste exemplo, nome guarda um texto, idade guarda um inteiro e altura guarda um número decimal. O sinal \texttt{=} atribui um valor à variável.
+\end{EMASCnote}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[t]{2. Tipos de variáveis}
+O que são? O tipo indica a categoria do dado armazenado. Os tipos básicos mais comuns são:\par
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\toprule
+\textbf{Tipo} & \textbf{Descrição} & \textbf{Exemplo} \\
+\midrule
+\texttt{int} & Número inteiro & \texttt{idade = 18} \\
+\texttt{float} & Número decimal & \texttt{altura = 1.75} \\
+\texttt{str} & Texto (string) & \texttt{nome = "Ana"} \\
+\texttt{bool} & Valor lógico: verdadeiro ou falso & \texttt{aprovado = True} \\
+\bottomrule
+\end{tabularx}
+\par\smallskip
+Estrutura: atribua um valor e utilize \texttt{type()} para descobrir seu tipo.\par
+\end{frame}
+
+\begin{frame}[fragile,t]{2. Tipos de variáveis / Exemplo}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.46\textwidth}
+\EMASCcodelabel{Estrutura do comando}
+\begin{lstlisting}
+variavel = valor
+type(variavel)
+\end{lstlisting}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{visibleenv}<2->
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+idade = 18
+altura = 1.70
+nome = "João"
+aprovado = True
+
+print(type(idade))
+print(type(altura))
+print(type(nome))
+print(type(aprovado))
+\end{lstlisting}
+\end{visibleenv}
+\end{column}
+\end{columns}
+\begin{visibleenv}<3->
+\begin{EMASCnote}
+A função \texttt{type()} retorna o tipo do objeto. Os resultados serão, respectivamente, \texttt{int}, \texttt{float}, \texttt{str} e \texttt{bool}.
+\end{EMASCnote}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[fragile,t]{3. INPUT e PRINT}
+O que é? \texttt{input()} recebe uma informação digitada pelo usuário; \texttt{print()} exibe informações na tela.\par
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.40\textwidth}
+\EMASCcodelabel{Estrutura do comando}
+\begin{lstlisting}
+variavel = input("Mensagem: ")
+print(variavel)
+\end{lstlisting}
+\end{column}
+\begin{column}{0.56\textwidth}
+\begin{visibleenv}<2->
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+nome = input("Digite seu nome: ")
+idade = int(input("Digite sua idade: "))
+
+print("Seu nome é:", nome)
+print("Sua idade é:", idade)
+\end{lstlisting}
+\end{visibleenv}
+\end{column}
+\end{columns}
+\begin{visibleenv}<3->
+\begin{EMASCnote}
+Entenda o exemplo: O \texttt{input()} retorna texto (\texttt{str}). Por isso, \texttt{int()} converte a idade para inteiro. Para valores decimais, pode-se usar \texttt{float()}.
+\end{EMASCnote}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[t]{4.1 Operadores aritméticos}
+O que são? Operadores realizam cálculos, comparações e combinações lógicas.\par
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Operador} & \textbf{Operação} \\
+\midrule
+\texttt{+} & Adição \\
+\texttt{-} & Subtração \\
+\texttt{*} & Multiplicação \\
+\texttt{/} & Divisão \\
+\texttt{//} & Divisão inteira \\
+\texttt{\%} & Resto da divisão \\
+\texttt{**} & Potenciação \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}[fragile,t]{4.1 Operadores aritméticos / Exemplo}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\EMASCcodelabel{Estrutura do comando}
+\begin{lstlisting}
+resultado = valor1 operador valor2
+\end{lstlisting}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{visibleenv}<2->
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+numero1 = 10
+numero2 = 5
+
+print(numero1 + numero2) # 15
+print(numero1 - numero2) # 5
+print(numero1 * numero2) # 50
+print(numero1 / numero2) # 2.0
+print(numero1 % numero2) # 0
+print(numero1 ** numero2) # 100000
+\end{lstlisting}
+\end{visibleenv}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile,t]{4.2 Operadores relacionais}
+Comparam valores e produzem um resultado booleano (\texttt{True} ou \texttt{False}): \texttt{==} igual; \texttt{!=} diferente; \texttt{\textgreater{}} maior; \texttt{\textless{}} menor; \texttt{\textgreater{}=} maior ou igual; \texttt{\textless{}=} menor ou igual.\par
+\begin{visibleenv}<2->
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+idade = 18
+
+print(idade >= 18)    # True
+print(idade == 18)    # True
+print(idade != 20)    # True
+\end{lstlisting}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[fragile,t]{4.3 Operadores lógicos}
+\texttt{and} (E) exige que as condições sejam verdadeiras; \texttt{or} (OU) exige pelo menos uma condição verdadeira; \texttt{not} (NÃO) inverte o valor lógico.\par
+\begin{visibleenv}<2->
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+idade = 20
+tem_carteira = True
+
+print(idade >= 18 and tem_carteira)     # True
+\end{lstlisting}
+\end{visibleenv}
+\end{frame}

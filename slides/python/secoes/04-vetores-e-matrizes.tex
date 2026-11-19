@@ -1,0 +1,108 @@
+\section{Vetores e matrizes}
+
+\begin{frame}[fragile,t]{11. Vetores}
+O que é? Em fundamentos de programação, um vetor é uma estrutura unidimensional, organizada em posições sequenciais. Em Python introdutório, uma lista pode representar esse tipo de estrutura.\par
+\begin{visibleenv}<2->
+\EMASCcodelabel{Estrutura do comando}
+\begin{lstlisting}
+vetor = [elemento1, elemento2, elemento3]
+\end{lstlisting}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[fragile,t]{11. Vetores / Exemplo}
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+numeros = [10, 20, 30, 40, 50]
+
+for i in range(len(numeros)):
+    print(numeros[i])
+\end{lstlisting}
+\begin{visibleenv}<2->
+\begin{EMASCnote}
+Entenda o exemplo: \texttt{len(numeros)} informa a quantidade de elementos. \texttt{range()} gera os índices e \texttt{numeros[i]} acessa o elemento na posição indicada.
+\end{EMASCnote}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[fragile,t]{11. Vetores / Acessando posições específicas}
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+numeros = [10, 20, 30, 40, 50]
+
+print(numeros[0])   # 10
+print(numeros[2])   # 30
+print(numeros[4])   # 50
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile,t]{12. Matrizes}
+O que é? Matrizes organizam dados em linhas e colunas. Uma matriz bidimensional pode ser representada em Python por uma lista cujos elementos também são listas.\par
+\begin{visibleenv}<2->
+\EMASCcodelabel{Estrutura do comando}
+\begin{lstlisting}
+matriz = [
+    [elemento1, elemento2],
+    [elemento3, elemento4]
+]
+\end{lstlisting}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[fragile,t]{12. Matrizes / Exemplo}
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print(matriz[0][0])    # 1
+print(matriz[1][2])    # 6
+print(matriz[2][1])    # 8
+\end{lstlisting}
+\begin{visibleenv}<2->
+\begin{EMASCnote}
+Entenda o exemplo: O primeiro índice indica a linha e o segundo indica a coluna. Como os índices começam em zero, \texttt{matriz[1][2]} acessa a segunda linha e a terceira coluna.
+\end{EMASCnote}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[fragile,t]{12. Matrizes / Percorrendo todos os elementos}
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+for linha in matriz:
+    for elemento in linha:
+        print(elemento)
+\end{lstlisting}
+\begin{visibleenv}<2->
+\begin{EMASCnote}
+O primeiro \texttt{for} percorre cada linha. O segundo percorre os elementos da linha atual.
+\end{EMASCnote}
+\end{visibleenv}
+\end{frame}
+
+\begin{frame}[t]{13. Resumo geral}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Assunto} & \textbf{Comando / representação} \\
+\midrule
+Variáveis & \texttt{nome = valor} \\
+Tipos & \texttt{int, float, str, bool} \\
+Entrada & \texttt{input()} \\
+Saída & \texttt{print()} \\
+Operadores & \texttt{+ - * / // \% **; == != \textgreater{} \textless{} \textgreater{}= \textless{}=} \\
+Condicionais & \texttt{if, elif, else} \\
+Repetição & \texttt{while, for} \\
+Funções & \texttt{def, return} \\
+Listas & \texttt{[]} \\
+Tuplas & \texttt{()} \\
+Dicionários & \texttt{\{\} com pares chave: valor} \\
+Vetores & lista unidimensional \\
+Matrizes & listas aninhadas (linhas e colunas) \\
+\bottomrule
+\end{tabularx}
+\end{frame}
