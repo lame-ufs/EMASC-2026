@@ -2,7 +2,7 @@
 
 - [Apresentação integrada](minicurso-emasc-2026.pdf) · Introdução, Python e Estatística.
 - [Fonte Beamer de Python](python/introducao-python.tex) e [PDF de Python](python/introducao-python.pdf).
-- [Notebook da apresentação](../notebooks/minicurso-emasc-2026.ipynb) e [CSV de Estatística](../data/estatistica/AI_SocialMedia_Student_Dataset.csv).
+- [Notebook da apresentação](../notebooks/exemplos.ipynb) e [CSV de Estatística](../data/estatistica/AI_SocialMedia_Student_Dataset.csv).
 
 O notebook integrado e o notebook de Estatística trazem as logos da LAME e da EMASC incorporadas no cabeçalho.
 
@@ -47,7 +47,7 @@ Durante a apresentação, avance uma página por vez para revelar exemplos e com
 
 ## Gerar o PDF integrado
 
-Com TeX Live (Beamer e `latexmk`) e Python instalados, execute a partir da raiz do repositório. As dependências de montagem estão em [`requirements.txt`](requirements.txt).
+Com TeX Live (Beamer, pacote `qrcode` e `latexmk`) e Python instalados, execute a partir da raiz do repositório. As dependências de montagem estão em [`requirements.txt`](requirements.txt).
 
 ```text
 python -m pip install -r slides/requirements.txt

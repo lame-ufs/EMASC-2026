@@ -1,12 +1,12 @@
 # Notebooks do minicurso
 
-- [Notebook integrado](minicurso-emasc-2026.ipynb): exemplos de Python e Estatística, na ordem da apresentação.
-- [Notebook de Estatística](minicurso_estatistica_EMASC2026.ipynb): material preparado por Gabriel C. Souza.
+- [Notebook de exemplos](exemplos.ipynb): exemplos de Python e Estatística, na ordem da apresentação.
+- [Notebook de Estatística](exemplos_estatistica.ipynb): material preparado por Gabriel C. Souza.
 - [Base de dados de Estatística](../data/estatistica/AI_SocialMedia_Student_Dataset.csv): arquivo CSV usado nos dois notebooks.
 
 ## Google Colab
 
-Abra o notebook pelo Colab e envie o CSV pelo painel **Arquivos**, mantendo o nome original. Execute as células em ordem. Se iniciar uma nova sessão, envie o CSV novamente.
+Abra [os exemplos do minicurso](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exemplos.ipynb) ou [os exemplos de Estatística](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exemplos_estatistica.ipynb) pelo Colab e envie o CSV pelo painel **Arquivos**, mantendo o nome original. Execute as células em ordem. Se iniciar uma nova sessão, envie o CSV novamente.
 
 ## Jupyter local
 
