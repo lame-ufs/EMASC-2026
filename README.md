@@ -16,7 +16,6 @@ Neste repositório estão os materiais do minicurso promovido pela Liga Acadêmi
 | Apresentação do minicurso | [Baixar PDF](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/slides/minicurso-emasc-2026.pdf) | — |
 | Guia de Apoio | [Baixar PDF](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/guia-de-apoio/guia_lame.pdf) | — |
 | Exemplos do minicurso | [Baixar notebook (.ipynb)](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/notebooks/exemplos.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exemplos.ipynb) |
-| Exemplos de Estatística | [Baixar notebook (.ipynb)](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/notebooks/exemplos_estatistica.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exemplos_estatistica.ipynb) |
 | Exercícios | [Pasta de exercícios](exercicios/atividades/) | Em breve |
 
 O Guia de Apoio é um material complementar, com explicações e exemplos para consulta após o minicurso. O arquivo dos exercícios e seu link do Colab serão disponibilizados nesta página.
@@ -38,7 +37,7 @@ Também é possível baixar o notebook (.ipynb) e enviá-lo ao Colab por meio da
 
 Alguns exemplos precisam de arquivos CSV. Baixe a base correspondente e mantenha o nome original.
 
-- [Base de Estatística — AI_SocialMedia_Student_Dataset.csv](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/data/estatistica/AI_SocialMedia_Student_Dataset.csv): utilizada nos notebooks de exemplos.
+- [Base de Estatística — AI_SocialMedia_Student_Dataset.csv](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/data/estatistica/AI_SocialMedia_Student_Dataset.csv): utilizada no notebook de exemplos.
 - [Base de notas — notas.csv](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/guia-de-apoio/dados/notas.csv): utilizada nos exemplos do Guia de Apoio.
 
 No Colab, abra o painel **Arquivos** (ícone de pasta) e envie o CSV. Caso a sessão seja reiniciada, pode ser necessário enviar o arquivo novamente.
