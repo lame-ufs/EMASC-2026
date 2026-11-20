@@ -15,7 +15,7 @@ Neste repositório estão os materiais do minicurso promovido pela Liga Acadêmi
 |---|---|---|
 | Apresentação do minicurso | [Baixar PDF](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/slides/minicurso-emasc-2026.pdf) | — |
 | Guia de Apoio | [Baixar PDF](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/guia-de-apoio/guia_lame.pdf) | — |
-| Exemplos do minicurso | [Baixar notebook (.ipynb)](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/notebooks/exemplos.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exemplos.ipynb) |
+| Exemplos do minicurso | [Abrir/baixar notebook (.ipynb)](notebooks/exemplos.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exemplos.ipynb) |
 | Exercícios | [Pasta de exercícios](exercicios/atividades/) | Em breve |
 
 O Guia de Apoio é um material complementar, com explicações e exemplos para consulta após o minicurso. O arquivo dos exercícios e seu link do Colab serão disponibilizados nesta página.
@@ -31,16 +31,16 @@ O [Google Colab](https://colab.research.google.com/) permite executar Python pel
 3. Execute cada célula de código na ordem em que aparece, usando o botão de execução ou o atalho `Shift + Enter`.
 4. Para guardar as alterações, selecione **Arquivo > Salvar uma cópia no Drive**.
 
-Também é possível baixar o notebook (.ipynb) e enviá-lo ao Colab por meio da opção de upload de notebooks.
+Para baixar o notebook (.ipynb), abra o arquivo pelo link da tabela e clique no ícone de download (**Download raw file**), próximo ao botão **Raw**, no GitHub. O arquivo poderá ser enviado ao Colab pela opção de upload de notebooks.
 
 ### Bases de dados
 
 Alguns exemplos precisam de arquivos CSV. Baixe a base correspondente e mantenha o nome original.
 
-- [Base de Estatística — AI_SocialMedia_Student_Dataset.csv](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/data/estatistica/AI_SocialMedia_Student_Dataset.csv): utilizada no notebook de exemplos.
-- [Base de notas — notas.csv](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/guia-de-apoio/dados/notas.csv): utilizada nos exemplos do Guia de Apoio.
+- [Base de Estatística — AI_SocialMedia_Student_Dataset.csv](data/estatistica/AI_SocialMedia_Student_Dataset.csv): utilizada no notebook de exemplos.
+- [Base de notas — notas.csv](guia-de-apoio/dados/notas.csv): utilizada nos exemplos do Guia de Apoio.
 
-No Colab, abra o painel **Arquivos** (ícone de pasta) e envie o CSV. Caso a sessão seja reiniciada, pode ser necessário enviar o arquivo novamente.
+Abra a base desejada no GitHub e clique em **Download raw file** para baixá-la. No Colab, abra o painel **Arquivos** (ícone de pasta) e envie o CSV. Caso a sessão seja reiniciada, pode ser necessário enviar o arquivo novamente.
 
 Para executar os notebooks no computador, consulte as [instruções de instalação e execução local](notebooks/README.md).
 
