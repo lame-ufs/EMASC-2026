@@ -46,7 +46,8 @@ def conectar_sumario(writer, destinos):
 
 
 def remover_numeracao_local(pagina, texto):
-    rodape = re.search(r"UFS\s*(\d+)\s*/\s*(\d+)\s*$", texto)
+    # Em overlays, o texto revelado pode ser extraído depois do rodapé.
+    rodape = re.search(r"UFS\s*(\d+)\s*/\s*(\d+)(?=\s|$)", texto)
     if not rodape:
         return None
 
@@ -57,8 +58,14 @@ def remover_numeracao_local(pagina, texto):
         for i, (operandos, operador) in enumerate(conteudo.operations)
         if operador == b"TJ"
     ]
-    for (indice_atual, numero), (indice_total, denominador) in reversed(list(zip(trechos, trechos[1:]))):
-        if numero.strip() == atual and denominador.replace(" ", "") == f"/{total}":
+    for (_, anterior), (indice_atual, numero), (indice_total, denominador) in reversed(
+        list(zip(trechos, trechos[1:], trechos[2:]))
+    ):
+        if (
+            anterior.rstrip().endswith("UFS")
+            and numero.strip() == atual
+            and denominador.replace(" ", "") == f"/{total}"
+        ):
             del conteudo.operations[indice_total]
             del conteudo.operations[indice_atual]
             pagina.replace_contents(conteudo)
@@ -139,7 +146,12 @@ def main():
     if titulo_referencias not in python_pdf.pages[indice_referencias].extract_text():
         raise ValueError("O marcador referencias-python deve apontar para o primeiro slide de referências.")
 
-    estatistica_pdf = PdfReader(slides / "estatistica" / "apresentacao_emasc2026.pdf")
+    fonte_estatistica = slides / "estatistica" / "build" / "introducao-estatistica.pdf"
+    if not fonte_estatistica.is_file():
+        raise FileNotFoundError(
+            "Compile introducao-estatistica.tex conforme slides/README.md."
+        )
+    estatistica_pdf = PdfReader(fonte_estatistica)
     paginas_estatistica = len(estatistica_pdf.pages)
     indice_encerramento = paginas_estatistica - 1
     if "Obrigado!" not in estatistica_pdf.pages[indice_encerramento].extract_text():

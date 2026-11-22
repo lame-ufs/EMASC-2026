@@ -33,4 +33,4 @@ python -m pymupdf clean -garbage 4 -compress -sanitize build/reconstrucao.pdf re
 
 O PDF compilado aparece em `build/reconstrucao.pdf`. O segundo comando Python gera a prévia local `reconstrucao.pdf` compactada sem perda visual. Ambos os PDFs gerados são ignorados pelo Git.
 
-O PDF original de Estatística está na pasta acima e continua sendo a fonte usada para montar a apresentação integrada, inclusive para a correção já realizada do e-mail no encerramento. A reconstrução está disponível para edição e revisão pela equipe.
+A reconstrução foi substituída na apresentação integrada pela [fonte revisada de Gabriel](../introducao-estatistica.tex), recebida em 22/11/2026. Esta pasta preserva a versão anterior para consulta histórica; não é necessária para compilar os slides atuais.
