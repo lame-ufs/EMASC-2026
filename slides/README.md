@@ -1,8 +1,8 @@
 # Apresentação do minicurso · LAME / EMASC 2026
 
-- [Apresentação integrada](minicurso-emasc-2026.pdf) · Introdução, Python e Estatística.
+- [Apresentação integrada](minicurso-emasc-2026.pdf) · Introdução, Motivação, Python e Estatística.
 - [Fonte Beamer de Python](python/introducao-python.tex) e [PDF de Python](python/introducao-python.pdf).
-- [Notebook da apresentação](../notebooks/exemplos.ipynb) e [CSV de Estatística](../data/estatistica/AI_SocialMedia_Student_Dataset.csv).
+- [Notebook da apresentação](../notebooks/exemplos.ipynb) e [CSV de Estatística](../data/estatistica/alunos_redes_ia.csv).
 
 O notebook integrado e o notebook de Estatística trazem as logos da LAME e da EMASC incorporadas no cabeçalho.
 
@@ -16,12 +16,12 @@ Cada parte tem sua própria pasta. Edite apenas os arquivos da etapa sob sua res
 | Introdução | [`introducao/conteudo.tex`](introducao/conteudo.tex) |
 | Motivação | [`motivacao/conteudo.tex`](motivacao/conteudo.tex) |
 | Python | [`python/secoes/`](python/secoes/) |
-| Estatística | [`estatistica/capa.tex`](estatistica/capa.tex), [reconstrução LaTeX](estatistica/reconstrucao/README.md) e [PDF original de Gabriel](estatistica/apresentacao_emasc2026.pdf) |
+| Estatística | [`estatistica/introducao-estatistica.tex`](estatistica/introducao-estatistica.tex) (fonte de Gabriel) e [`estatistica/capa.tex`](estatistica/capa.tex) |
 | Ciência de Dados | [`ciencia-de-dados/conteudo.tex`](ciencia-de-dados/conteudo.tex) |
 | Exercícios | [`exercicios/conteudo.tex`](exercicios/conteudo.tex) |
 | Processo Seletivo LAME 2027 | [`processo-seletivo/conteudo.tex`](processo-seletivo/conteudo.tex) |
 
-As seis partes do bloco de Python ficam em `python/secoes/`, numeradas conforme o roteiro. O PDF de Estatística foi fornecido compilado. A pasta `estatistica/reconstrucao/` contém um projeto Beamer com os textos recuperados em arquivos editáveis e os elementos gráficos e matemáticos preservados em vetor. A fonte LaTeX original permanece com o responsável. A apresentação integrada continua usando o PDF original enquanto a reconstrução é revisada.
+As seis partes do bloco de Python ficam em `python/secoes/`, numeradas conforme o roteiro. A apresentação integrada utiliza a versão revisada de Estatística de Gabriel C. Souza em [`estatistica/`](estatistica/README.md). O [QR Code](motivacao/figuras/qr-code-dashboard-ufs-tre.png) do [dashboard UFS/TRE](https://dashboard-ufs-tre.streamlit.app/) recebido para Motivação está em `motivacao/figuras/`.
 
 Para acrescentar um slide, adicione um ambiente `frame` ao arquivo de conteúdo correspondente. As capas já estão no início de cada bloco. Exemplo:
 
@@ -55,10 +55,12 @@ cd slides/python
 latexmk -pdf introducao-python.tex
 cd ../modelo
 latexmk -pdf aberturas.tex
+cd ../estatistica
+latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build introducao-estatistica.tex
 cd ../..
 python slides/montar_apresentacao.py
 ```
 
-Os arquivos auxiliares do LaTeX e o PDF intermediário `modelo/aberturas.pdf` são gerados localmente e ignorados pelo Git. Os PDFs de apresentação e as fontes necessárias para reconstruí-los permanecem no projeto.
+Os arquivos auxiliares do LaTeX e os PDFs intermediários `modelo/aberturas.pdf` e `estatistica/build/introducao-estatistica.pdf` são gerados localmente e ignorados pelo Git. O PDF integrado e as fontes necessárias para reconstruí-lo permanecem no projeto.
 
-O script aplica a nova capa de Estatística apenas ao PDF integrado e incorpora os slides do [PDF original de Estatística](estatistica/apresentacao_emasc2026.pdf) com a navegação interna. O e-mail do encerramento vem da capa geral. As referências de Python ficam imediatamente antes do slide de agradecimento. O bloco de Ciência de Dados aguarda o material da equipe.
+O script aplica a capa padronizada de Estatística ao PDF integrado e incorpora os slides da fonte revisada com a navegação interna. As referências de Python ficam imediatamente antes do slide de agradecimento. O bloco de Ciência de Dados aguarda o material da equipe.

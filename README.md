@@ -16,9 +16,9 @@ Neste repositório estão os materiais do minicurso promovido pela Liga Acadêmi
 | Apresentação do minicurso | [Baixar PDF](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/slides/minicurso-emasc-2026.pdf) | — |
 | Guia de Apoio | [Baixar PDF](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/guia-de-apoio/guia_lame.pdf) | — |
 | Exemplos do minicurso | [Abrir/baixar notebook (.ipynb)](notebooks/exemplos.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exemplos.ipynb) |
-| Exercícios | [Pasta de exercícios](exercicios/atividades/) | Em breve |
+| Exercícios | [Abrir/baixar notebook (.ipynb)](notebooks/exercicios.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exercicios.ipynb) |
 
-O Guia de Apoio é um material complementar, com explicações e exemplos para consulta após o minicurso. O arquivo dos exercícios e seu link do Colab serão disponibilizados nesta página.
+O Guia de Apoio é um material complementar, com explicações e exemplos para consulta após o minicurso. Os exercícios estão organizados em níveis de dificuldade no notebook de exercícios.
 
 ## 2. Como executar os notebooks
 
@@ -28,19 +28,19 @@ O [Google Colab](https://colab.research.google.com/) permite executar Python pel
 
 1. Clique em **Abrir no Colab** na linha do notebook desejado.
 2. Acesse sua conta Google, se necessário.
-3. Execute cada célula de código na ordem em que aparece, usando o botão de execução ou o atalho `Shift + Enter`.
+3. Execute cada célula de código na ordem em que aparece, usando o botão de execução ou o atalho `Shift + Enter`. No notebook de exercícios, complete as lacunas antes de executar as células correspondentes.
 4. Para guardar as alterações, selecione **Arquivo > Salvar uma cópia no Drive**.
 
 Para baixar o notebook (.ipynb), abra o arquivo pelo link da tabela e clique no ícone de download (**Download raw file**), próximo ao botão **Raw**, no GitHub. O arquivo poderá ser enviado ao Colab pela opção de upload de notebooks.
 
 ### Bases de dados
 
-Alguns exemplos precisam de arquivos CSV. Baixe a base correspondente e mantenha o nome original.
+Os exemplos de Estatística carregam a base de dados automaticamente do GitHub no Colab ou da pasta local do projeto. Os arquivos CSV também estão disponíveis para download.
 
-- [Base de Estatística — AI_SocialMedia_Student_Dataset.csv](data/estatistica/AI_SocialMedia_Student_Dataset.csv): utilizada no notebook de exemplos.
+- [Base de Estatística — alunos_redes_ia.csv](data/estatistica/alunos_redes_ia.csv): utilizada no notebook de exemplos.
 - [Base de notas — notas.csv](guia-de-apoio/dados/notas.csv): utilizada nos exemplos do Guia de Apoio.
 
-Abra a base desejada no GitHub e clique em **Download raw file** para baixá-la. No Colab, abra o painel **Arquivos** (ícone de pasta) e envie o CSV. Caso a sessão seja reiniciada, pode ser necessário enviar o arquivo novamente.
+Se for necessário enviar uma base manualmente, abra o arquivo no GitHub e clique em **Download raw file**. No Colab, abra o painel **Arquivos** (ícone de pasta) e envie o CSV, mantendo o nome do arquivo.
 
 Para executar os notebooks no computador, consulte as [instruções de instalação e execução local](notebooks/README.md).
 
