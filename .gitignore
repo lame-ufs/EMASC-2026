@@ -18,3 +18,4 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 /notebooks/AI_SocialMedia_Student_Dataset.csv
+/notebooks/alunos_redes_ia.csv
