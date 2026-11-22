@@ -142,7 +142,7 @@ def main():
     if marcador_referencias is None:
         raise ValueError("Recompile o PDF de Python com o marcador referencias-python.")
     indice_referencias = python_pdf.get_destination_page_number(marcador_referencias)
-    titulo_referencias = "Referências de Python"
+    titulo_referencias = "Referências"
     if titulo_referencias not in python_pdf.pages[indice_referencias].extract_text():
         raise ValueError("O marcador referencias-python deve apontar para o primeiro slide de referências.")
 

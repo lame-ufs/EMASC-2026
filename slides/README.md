@@ -63,4 +63,4 @@ python slides/montar_apresentacao.py
 
 Os arquivos auxiliares do LaTeX e os PDFs intermediários `modelo/aberturas.pdf` e `estatistica/build/introducao-estatistica.pdf` são gerados localmente e ignorados pelo Git. O PDF integrado e as fontes necessárias para reconstruí-lo permanecem no projeto.
 
-O script aplica a capa padronizada de Estatística ao PDF integrado e incorpora os slides da fonte revisada com a navegação interna. As referências de Python ficam imediatamente antes do slide de agradecimento. O bloco de Ciência de Dados aguarda o material da equipe.
+O script aplica a capa padronizada de Estatística ao PDF integrado e incorpora os slides da fonte revisada com a navegação interna. As referências ficam imediatamente antes do slide de agradecimento. O bloco de Ciência de Dados aguarda o material da equipe.
