@@ -1,0 +1,34 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\graphicspath{{../../assets/}{figuras/}}
+\makeatletter
+\IfFileExists{beamerthemeEMASC.sty}{}{\def\input@path{{../modelo/}}}
+\makeatother
+\usetheme{EMASC}
+
+\setlength{\parskip}{0.35em}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.08}
+\lstset{style=EMASC,language=Python}
+\hypersetup{colorlinks=true,urlcolor=emascPurple,linkcolor=emascPurple,pdfencoding=auto}
+\urlstyle{same}
+\renewcommand*{\HyperDestNameFilter}[1]{ciencia-dados.#1}
+
+\title{Introdução à Ciência de Dados}
+\institute{Liga Acadêmica Matemática \& Empresa}
+\date{EMASC 2026}
+
+\begin{document}
+\input{secoes/00-abertura}
+\input{secoes/01-problema-e-bibliotecas}
+\input{secoes/02-numpy}
+\input{secoes/03-pandas}
+\input{secoes/04-preparacao}
+\input{secoes/05-analise-e-visualizacao}
+\input{secoes/06-resultado}
+\input{secoes/07-referencias}
+\end{document}

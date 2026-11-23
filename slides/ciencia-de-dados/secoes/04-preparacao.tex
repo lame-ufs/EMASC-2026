@@ -1,0 +1,50 @@
+\section{Preparação dos dados}
+
+\begin{frame}[fragile,t,label=cd-preparacao]{3. Qualidade dos dados}
+Após conferir os tipos das colunas, verificam-se registros repetidos, ausentes (\texttt{NaN}) e valores fora dos limites esperados.
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+print("Duplicatas:", df.duplicated().sum())
+print("IDs repetidos:", df["id"].duplicated().sum())
+print("Ausentes:\n", df.isna().sum())
+fora = df["nota"].notna() & ~df["nota"].between(0, 10)
+print("Notas fora de 0 a 10:\n", df[fora])
+\end{lstlisting}
+\begin{EMASCnote}
+\texttt{sum()} conta os valores \texttt{True} como 1. Há duas notas ausentes; a tabela vazia indica que nenhuma nota registrada está fora de 0 a 10.
+\end{EMASCnote}
+\end{frame}
+
+\begin{frame}[fragile,t]{3.1. Tratamento de valores ausentes}
+Existem diferentes formas de tratar valores ausentes. A escolha depende do significado desses valores e do objetivo da análise.
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+pendentes = df[df["nota"].isna()]
+print(pendentes[["id", "curso"]])
+
+df_com_notas = df.dropna(subset=["nota"]).copy()
+print("Linhas e colunas:", df_com_notas.shape)
+\end{lstlisting}
+\begin{EMASCnote}
+Uma nota ausente não significa nota zero. Os 18 registros ficam em \texttt{df}; \texttt{dropna()} mantém apenas os 16 com nota na cópia.
+\end{EMASCnote}
+\small
+\texttt{fillna(valor)} é outra possibilidade, quando a substituição puder ser justificada. Neste problema, substituir notas inventaria informações.
+\end{frame}
+
+\begin{frame}[fragile,t]{3.2. Criação de colunas}
+Novas colunas podem ser calculadas ou obtidas por meio de uma função. Vamos converter a frequência em porcentagem e classificar as notas.
+\EMASCcodelabel{Exemplo prático}
+\begin{lstlisting}
+df_com_notas["frequencia_pct"] = df_com_notas["frequencia"] * 100
+def classificar(nota):
+    if nota >= 7:
+        return "Nota >= 7"
+    return "Nota < 7"
+df_com_notas["situacao"] = df_com_notas["nota"].apply(classificar)
+print(df_com_notas[["frequencia_pct", "nota", "situacao"]].head())
+\end{lstlisting}
+\begin{EMASCnote}
+\texttt{apply()} aplica a função a cada nota. O limite 7 é didático, não uma regra oficial de aprovação.
+\end{EMASCnote}
+\end{frame}
