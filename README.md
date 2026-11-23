@@ -35,10 +35,10 @@ Para baixar o notebook (.ipynb), abra o arquivo pelo link da tabela e clique no 
 
 ### Bases de dados
 
-Os exemplos de Estatística carregam a base de dados automaticamente do GitHub no Colab ou da pasta local do projeto. Os arquivos CSV também estão disponíveis para download.
+Os exemplos de Estatística e Ciência de Dados carregam as bases automaticamente do GitHub no Colab ou da pasta local do projeto. Os arquivos CSV também estão disponíveis para download.
 
 - [Base de Estatística — alunos_redes_ia.csv](data/estatistica/alunos_redes_ia.csv): utilizada no notebook de exemplos.
-- [Base de notas — notas.csv](guia-de-apoio/dados/notas.csv): utilizada nos exemplos do Guia de Apoio.
+- [Base de notas — notas.csv](guia-de-apoio/dados/notas.csv): utilizada nos exemplos de Ciência de Dados e do Guia de Apoio.
 
 Se for necessário enviar uma base manualmente, abra o arquivo no GitHub e clique em **Download raw file**. No Colab, abra o painel **Arquivos** (ícone de pasta) e envie o CSV, mantendo o nome do arquivo.
 
