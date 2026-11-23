@@ -1,8 +1,9 @@
 # Apresentação do minicurso · LAME / EMASC 2026
 
-- [Apresentação integrada](minicurso-emasc-2026.pdf) · Introdução, Motivação, Python e Estatística.
+- [Apresentação integrada](minicurso-emasc-2026.pdf) · Introdução, Motivação, Python, Estatística e Ciência de Dados.
 - [Fonte Beamer de Python](python/introducao-python.tex) e [PDF de Python](python/introducao-python.pdf).
-- [Notebook da apresentação](../notebooks/exemplos.ipynb) e [CSV de Estatística](../data/estatistica/alunos_redes_ia.csv).
+- [Fonte Beamer de Ciência de Dados](ciencia-de-dados/introducao-ciencia-de-dados.tex) e [PDF independente](ciencia-de-dados/introducao-ciencia-de-dados.pdf).
+- [Notebook da apresentação](../notebooks/exemplos.ipynb), [CSV de Estatística](../data/estatistica/alunos_redes_ia.csv) e [CSV de Ciência de Dados](../guia-de-apoio/dados/notas.csv).
 
 O notebook integrado e o notebook de Estatística trazem as logos da LAME e da EMASC incorporadas no cabeçalho.
 
@@ -17,7 +18,7 @@ Cada parte tem sua própria pasta. Edite apenas os arquivos da etapa sob sua res
 | Motivação | [`motivacao/conteudo.tex`](motivacao/conteudo.tex) |
 | Python | [`python/secoes/`](python/secoes/) |
 | Estatística | [`estatistica/introducao-estatistica.tex`](estatistica/introducao-estatistica.tex) (fonte de Gabriel) e [`estatistica/capa.tex`](estatistica/capa.tex) |
-| Ciência de Dados | [`ciencia-de-dados/conteudo.tex`](ciencia-de-dados/conteudo.tex) |
+| Ciência de Dados | [`ciencia-de-dados/secoes/`](ciencia-de-dados/secoes/) e [capa](ciencia-de-dados/conteudo.tex) |
 | Exercícios | [`exercicios/conteudo.tex`](exercicios/conteudo.tex) |
 | Processo Seletivo LAME 2027 | [`processo-seletivo/conteudo.tex`](processo-seletivo/conteudo.tex) |
 
@@ -39,7 +40,7 @@ O [tema Beamer do EMASC 2026](modelo/beamerthemeEMASC.sty) concentra a tipografi
 
 As aberturas usam o mesmo tema. O arquivo [aberturas.tex](modelo/aberturas.tex) reúne as partes editáveis por meio de `\input` e identifica cada bloco com `\section`. O arquivo `python/introducao-python.tex` reúne as subseções de Python da mesma forma. Esses dois arquivos contêm a configuração e a ordem de inclusão. O conteúdo fica nas pastas de cada parte.
 
-O script de integração usa os marcadores das seções no PDF para localizar os blocos, atualizar os links do sumário e calcular a numeração. É possível acrescentar slides às partes sem alterar os índices manualmente. Preserve os identificadores das seções no arquivo de montagem e o rótulo `referencias-python` no primeiro slide de referências.
+O script de integração usa os marcadores das seções no PDF para localizar os blocos, atualizar os links do sumário e calcular a numeração. É possível acrescentar slides às partes sem alterar os índices manualmente. Preserve os identificadores das seções no arquivo de montagem e os rótulos `referencias-python` e `referencias-ciencia-dados` nos slides de referências.
 
 A paleta segue a referência visual da LAME, e as aberturas usam o motivo de grafos dos posts da EMASC, disponível em `assets/grafos-emasc.png`. O e-mail exibido na capa é `lame.ufs.mat@gmail.com`.
 
@@ -51,16 +52,20 @@ Com TeX Live (Beamer, pacote `qrcode` e `latexmk`) e Python instalados, execute 
 
 ```text
 python -m pip install -r slides/requirements.txt
+python -m pip install -r notebooks/requirements.txt
+python slides/ciencia-de-dados/gerar_exemplos.py --integrar
 cd slides/python
 latexmk -pdf introducao-python.tex
 cd ../modelo
 latexmk -pdf aberturas.tex
 cd ../estatistica
 latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build introducao-estatistica.tex
+cd ../ciencia-de-dados
+latexmk -pdf introducao-ciencia-de-dados.tex
 cd ../..
 python slides/montar_apresentacao.py
 ```
 
 Os arquivos auxiliares do LaTeX e os PDFs intermediários `modelo/aberturas.pdf` e `estatistica/build/introducao-estatistica.pdf` são gerados localmente e ignorados pelo Git. O PDF integrado e as fontes necessárias para reconstruí-lo permanecem no projeto.
 
-O script aplica a capa padronizada de Estatística ao PDF integrado e incorpora os slides da fonte revisada com a navegação interna. As referências ficam imediatamente antes do slide de agradecimento. O bloco de Ciência de Dados aguarda o material da equipe.
+O script aplica as capas padronizadas a Estatística e Ciência de Dados e incorpora os slides com navegação interna. As referências ficam imediatamente antes do slide de agradecimento. O gerador de Ciência de Dados mantém seus exemplos sincronizados com o notebook integrado.

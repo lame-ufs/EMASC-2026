@@ -157,6 +157,17 @@ def main():
     if "Obrigado!" not in estatistica_pdf.pages[indice_encerramento].extract_text():
         raise ValueError("O PDF de Estatística deve terminar com o slide de agradecimento.")
 
+    ciencia_pdf = PdfReader(slides / "ciencia-de-dados" / "introducao-ciencia-de-dados.pdf")
+    paginas_ciencia = len(ciencia_pdf.pages)
+    marcador_ciencia = ciencia_pdf.named_destinations.get(
+        "ciencia-dados.referencias-ciencia-dados"
+    )
+    if marcador_ciencia is None:
+        raise ValueError("Recompile o PDF de Ciência de Dados com o marcador de referências.")
+    indice_referencias_ciencia = ciencia_pdf.get_destination_page_number(marcador_ciencia)
+    if titulo_referencias not in ciencia_pdf.pages[indice_referencias_ciencia].extract_text():
+        raise ValueError("O marcador de Ciência de Dados deve apontar para as referências.")
+
     writer = PdfWriter()
     writer.append(capas, pages=(0, intervalos["estatistica"][0]), import_outline=False)
     destinos = {
@@ -174,10 +185,21 @@ def main():
     for item in estatistica_pdf.outline:
         indice = estatistica_pdf.get_destination_page_number(item)
         writer.add_outline_item(item.title, offset_estatistica + indice, parent=marcador_estatistica)
-    for secao in ("ciencia-de-dados", "exercicios", "processo-seletivo"):
+    inicio_ciencia = len(writer.pages)
+    destinos["ciencia-de-dados"] = inicio_ciencia
+    writer.append(capas, pages=intervalos["ciencia-de-dados"], import_outline=False)
+    offset_ciencia = len(writer.pages) - 1
+    writer.append(ciencia_pdf, pages=(1, indice_referencias_ciencia), import_outline=False)
+    marcador_ciencia = writer.add_outline_item("Introdução à Ciência de Dados", inicio_ciencia)
+    for item in ciencia_pdf.outline:
+        indice = ciencia_pdf.get_destination_page_number(item)
+        if 1 <= indice < indice_referencias_ciencia:
+            writer.add_outline_item(item.title, offset_ciencia + indice, parent=marcador_ciencia)
+    for secao in ("exercicios", "processo-seletivo"):
         destinos[secao] = len(writer.pages)
         writer.append(capas, pages=intervalos[secao], import_outline=False)
     writer.append(python_pdf, titulo_referencias, pages=(indice_referencias, paginas_python))
+    writer.append(ciencia_pdf, pages=(indice_referencias_ciencia, paginas_ciencia), import_outline=False)
     writer.append(estatistica_pdf, pages=(indice_encerramento, paginas_estatistica))
     corrigir_email_no_encerramento(writer.pages[-1], email_da_capa(capas.pages[0]))
     conectar_sumario(writer, destinos)
