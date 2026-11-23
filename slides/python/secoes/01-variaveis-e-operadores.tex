@@ -31,6 +31,26 @@ Neste exemplo, nome guarda um texto, idade guarda um inteiro e altura guarda um 
 \end{visibleenv}
 \end{frame}
 
+\begin{frame}[t]{1. Variáveis / Regras de nomes}
+\begin{itemize}
+  \item Começa por letra ou \texttt{\_}. Depois, pode conter letras, números e \texttt{\_}.
+  \item Não admite espaços, hífens nem números no início.
+  \item Maiúsculas e minúsculas são distintas: \texttt{idade} e \texttt{Idade}.
+\end{itemize}
+\medskip
+\begin{tabularx}{\linewidth}{@{}XX@{}}
+\toprule
+\textbf{Nomes válidos} & \textbf{Nomes inválidos} \\
+\midrule
+\texttt{nota\_final}, \texttt{aluno2}, \texttt{\_total} &
+\texttt{2x}, \texttt{nome completo}, \texttt{a-b}, \texttt{if} \\
+\bottomrule
+\end{tabularx}
+\begin{EMASCnote}
+\textbf{Palavras reservadas:} possuem significado na linguagem e não podem ser nomes de variáveis. Exemplos: \texttt{if}, \texttt{else}, \texttt{for}, \texttt{while}, \texttt{def}, \texttt{return}, \texttt{True}, \texttt{False}, \texttt{None}.
+\end{EMASCnote}
+\end{frame}
+
 \begin{frame}[t]{2. Tipos de variáveis}
 O que são? O tipo indica a categoria do dado armazenado. Os tipos básicos mais comuns são:\par
 \begin{tabularx}{\linewidth}{@{}lXl@{}}
@@ -106,6 +126,8 @@ print("Sua idade é:", idade)
 \begin{visibleenv}<3->
 \begin{EMASCnote}
 Entenda o exemplo: O \texttt{input()} retorna texto (\texttt{str}). Por isso, \texttt{int()} converte a idade para inteiro. Para números de ponto flutuante, utiliza-se \texttt{float()}.
+\par\smallskip
+\textbf{Observação:} \texttt{eval()} avalia expressões em texto (\mbox{\texttt{eval("2+3")}} retorna 5). Não use com entradas do usuário, pois pode executar código.
 \end{EMASCnote}
 \end{visibleenv}
 \end{frame}
@@ -120,7 +142,7 @@ O que são? Operadores realizam cálculos, comparações e combinações lógica
 \texttt{-} & Subtração \\
 \texttt{*} & Multiplicação \\
 \texttt{/} & Divisão \\
-\texttt{//} & Divisão inteira \\
+\texttt{//} & Divisão inteira (quociente arredondado para baixo) \\
 \texttt{\%} & Resto da divisão \\
 \texttt{**} & Potenciação \\
 \bottomrule
@@ -146,6 +168,7 @@ print(numero1 + numero2) # 15
 print(numero1 - numero2) # 5
 print(numero1 * numero2) # 50
 print(numero1 / numero2) # 2.0
+print(numero1 // numero2) # 2
 print(numero1 % numero2) # 0
 print(numero1 ** numero2) # 100000
 \end{lstlisting}
@@ -164,19 +187,27 @@ idade = 18
 print(idade >= 18)    # True
 print(idade == 18)    # True
 print(idade != 20)    # True
+print(idade > 18)     # False
+print(idade < 18)     # False
+print(idade <= 17)    # False
 \end{lstlisting}
 \end{visibleenv}
 \end{frame}
 
 \begin{frame}[fragile,t]{4.3 Operadores lógicos}
-\texttt{and} (E) exige que as condições sejam verdadeiras; \texttt{or} (OU) exige pelo menos uma condição verdadeira; \texttt{not} (NÃO) inverte o valor lógico.\par
+\texttt{and} (E): as duas condições verdadeiras. \texttt{or} (OU): pelo menos uma verdadeira. \texttt{not} (NÃO): inverte o valor lógico. \texttt{\textasciicircum} (OU Exclusivo, XOR): com booleanos, retorna \texttt{True} quando exatamente um é verdadeiro.\par
 \begin{visibleenv}<2->
 \EMASCcodelabel{Exemplo prático}
 \begin{lstlisting}
 idade = 20
 tem_carteira = True
-
 print(idade >= 18 and tem_carteira)     # True
+print(idade < 18 or tem_carteira)       # True
+print(not tem_carteira)                 # False
+valor1 = True
+valor2 = False
+print(valor1 ^ valor2)                  # True
+print(valor1 ^ valor1)                  # False
 \end{lstlisting}
 \end{visibleenv}
 \end{frame}
