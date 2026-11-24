@@ -51,7 +51,7 @@ Os exemplos de Estatística e Ciência de Dados carregam as bases automaticament
 
 - [Base de Estatística — alunos_redes_ia.csv](notebooks/alunos_redes_ia.csv): utilizada no notebook de exemplos.
 - [Base de notas — notas.csv](guia-de-apoio/dados/notas.csv): utilizada nos exemplos de Ciência de Dados e do Guia de Apoio.
-- [Base do Titanic — titanic.csv](https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv): utilizada no bloco de Ciência de Dados dos exercícios, carregada diretamente de sua fonte pública.
+- [Base do Titanic — titanic.csv](notebooks/titanic.csv): utilizada no bloco de Ciência de Dados dos exercícios. Cópia da [base pública do seaborn-data](https://github.com/mwaskom/seaborn-data/blob/master/titanic.csv).
 
 Se for necessário enviar uma base manualmente, abra o arquivo no GitHub e clique em **Download raw file**. No Colab, abra o painel **Arquivos** (ícone de pasta) e envie o CSV, mantendo o nome do arquivo.
 
@@ -74,8 +74,8 @@ Os arquivos PDF também podem ser abertos diretamente pelos links da seção de 
 | 25/11, quarta-feira, 16h30 | Introdução e motivações | 15 min |
 | 25/11 | Introdução ao Python | 60 min |
 | 25/11 | Introdução à Estatística | 45 min |
-| 26/11, quinta-feira, 16h | Ciência de Dados e Bibliotecas | 45 min |
-| 26/11 | Exercícios | 50 min |
+| 26/11, quinta-feira, 16h | Ciência de Dados e Bibliotecas | 50 min |
+| 26/11 | Exercícios | 60 min |
 | 26/11 | Processo Seletivo LAME 2027 | 10 min |
 
 **Local:** Laboratório de Informática do Departamento de Matemática da UFS.
