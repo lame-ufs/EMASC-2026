@@ -18,4 +18,32 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 /notebooks/AI_SocialMedia_Student_Dataset.csv
-/notebooks/alunos_redes_ia.csv
+
+# Versão pública: apenas os materiais finais e suas dependências de execução.
+# As fontes LaTeX, figuras auxiliares e notebooks separados ficam no computador.
+/.fontes-locais/
+/assets/*
+!/assets/logo-lame.png
+!/assets/logo-emasc.png
+/slides/*
+!/slides/minicurso-emasc-2026.pdf
+/guia-de-apoio/*
+!/guia-de-apoio/guia_lame.pdf
+!/guia-de-apoio/requirements.txt
+!/guia-de-apoio/dados/
+/guia-de-apoio/dados/*
+!/guia-de-apoio/dados/notas.csv
+/data/estatistica/
+/notebooks/*
+!/notebooks/exemplos.ipynb
+!/notebooks/exercicios.ipynb
+!/notebooks/alunos_redes_ia.csv
+!/notebooks/README.md
+!/notebooks/requirements.txt
+
+# Liberação controlada após os exercícios: adicionar explicitamente os
+# arquivos autorizados, sem incluir o material interno do processo seletivo.
+/notebooks/gabarito.ipynb
+/data/processo-seletivo/
+/projeto-lame-2027/
+/projeto-lame-2027/solucao/

@@ -1,3 +1,0 @@
-# Localiza o tema Beamer compartilhado sem duplicar o arquivo.
-my $sep = $^O eq 'MSWin32' ? ';' : ':';
-$ENV{'TEXINPUTS'} = '../modelo' . $sep . ($ENV{'TEXINPUTS'} // '');
