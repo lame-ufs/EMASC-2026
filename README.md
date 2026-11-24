@@ -20,6 +20,18 @@ Neste repositório estão os materiais do minicurso promovido pela Liga Acadêmi
 
 O Guia de Apoio é um material complementar, com explicações e exemplos para consulta após o minicurso. Os exercícios estão organizados em níveis de dificuldade no notebook de exercícios.
 
+### Materiais disponíveis após os exercícios
+
+Os materiais abaixo serão disponibilizados em **26 de novembro de 2026, após a etapa de exercícios**. Os links estarão ativos no GitHub após a liberação.
+
+| Material | Acesso |
+|---|---|
+| Gabarito dos exercícios | [Notebook (.ipynb)](notebooks/gabarito.ipynb) |
+| Proposta do Processo Seletivo LAME 2027 | [PDF](projeto-lame-2027/proposta.pdf) |
+| Base de dados do processo seletivo | [CSV](projeto-lame-2027/desperdicio_alimentos.csv) |
+
+A entrega do projeto do processo seletivo deverá ser realizada até **10 de janeiro de 2027**, com o arquivo `.ipynb` anexado ao e-mail da Liga.
+
 ## 2. Como executar os notebooks
 
 ### Pelo Google Colab (recomendado)
@@ -37,8 +49,9 @@ Para baixar o notebook (.ipynb), abra o arquivo pelo link da tabela e clique no 
 
 Os exemplos de Estatística e Ciência de Dados carregam as bases automaticamente do GitHub no Colab ou da pasta local do projeto. Os arquivos CSV também estão disponíveis para download.
 
-- [Base de Estatística — alunos_redes_ia.csv](data/estatistica/alunos_redes_ia.csv): utilizada no notebook de exemplos.
+- [Base de Estatística — alunos_redes_ia.csv](notebooks/alunos_redes_ia.csv): utilizada no notebook de exemplos.
 - [Base de notas — notas.csv](guia-de-apoio/dados/notas.csv): utilizada nos exemplos de Ciência de Dados e do Guia de Apoio.
+- [Base do Titanic — titanic.csv](https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv): utilizada no bloco de Ciência de Dados dos exercícios, carregada diretamente de sua fonte pública.
 
 Se for necessário enviar uma base manualmente, abra o arquivo no GitHub e clique em **Download raw file**. No Colab, abra o painel **Arquivos** (ícone de pasta) e envie o CSV, mantendo o nome do arquivo.
 
