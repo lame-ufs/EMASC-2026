@@ -4,7 +4,7 @@
 - [Notebook de exercícios](exercicios.ipynb): atividades práticas organizadas em níveis de dificuldade.
 - [Base de dados de Estatística](alunos_redes_ia.csv): arquivo CSV utilizado nos exemplos de Estatística.
 - [Base de dados de Ciência de Dados](../guia-de-apoio/dados/notas.csv): utilizada nos exemplos de Ciência de Dados e no Guia de Apoio.
-- [Base do Titanic](https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv): utilizada no bloco de Ciência de Dados dos exercícios.
+- [Base do Titanic](titanic.csv): utilizada no bloco de Ciência de Dados dos exercícios, obtida do [repositório de datasets do seaborn](https://github.com/mwaskom/seaborn-data/blob/master/titanic.csv).
 
 ## Google Colab
 
@@ -21,7 +21,7 @@ jupyter notebook
 
 Os notebooks localizam automaticamente `notebooks/alunos_redes_ia.csv` e `guia-de-apoio/dados/notas.csv` ao serem executados na raiz do projeto ou na pasta `notebooks/`.
 
-Nos exercícios de Ciência de Dados, caso a internet não esteja disponível, coloque `titanic.csv` na pasta de trabalho do notebook.
+Nos exercícios de Ciência de Dados, a base `notebooks/titanic.csv` é localizada automaticamente a partir da raiz do projeto ou da pasta `notebooks/`. No Colab, se a leitura automática pelo GitHub não funcionar, envie o arquivo `titanic.csv` pelo painel Arquivos.
 
 As células com `input()` aguardam uma resposta antes de continuar a execução.
 

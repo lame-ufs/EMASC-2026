@@ -38,6 +38,7 @@ __pycache__/
 !/notebooks/exemplos.ipynb
 !/notebooks/exercicios.ipynb
 !/notebooks/alunos_redes_ia.csv
+!/notebooks/titanic.csv
 !/notebooks/README.md
 !/notebooks/requirements.txt
 
