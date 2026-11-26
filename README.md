@@ -17,20 +17,20 @@ Neste repositório estão os materiais do minicurso promovido pela Liga Acadêmi
 | Guia de Apoio | [Baixar PDF](https://github.com/lame-ufs/EMASC-2026/raw/refs/heads/main/guia-de-apoio/guia_lame.pdf) | — |
 | Exemplos do minicurso | [Abrir/baixar notebook (.ipynb)](notebooks/exemplos.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exemplos.ipynb) |
 | Exercícios | [Abrir/baixar notebook (.ipynb)](notebooks/exercicios.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/exercicios.ipynb) |
+| Gabarito dos exercícios | [Abrir/baixar notebook (.ipynb)](notebooks/gabarito.ipynb) | [Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/gabarito.ipynb) |
 
 O Guia de Apoio é um material complementar, com explicações e exemplos para consulta após o minicurso. Os exercícios estão organizados em níveis de dificuldade no notebook de exercícios.
 
-### Materiais disponíveis após os exercícios
+### Processo Seletivo LAME 2027
 
-Os materiais abaixo serão disponibilizados em **26 de novembro de 2026, após a etapa de exercícios**. Os links estarão ativos no GitHub após a liberação.
+Os materiais do projeto do processo seletivo estão disponíveis abaixo.
 
 | Material | Acesso |
 |---|---|
-| Gabarito dos exercícios | [Notebook (.ipynb)](notebooks/gabarito.ipynb) |
 | Proposta do Processo Seletivo LAME 2027 | [PDF](projeto-lame-2027/proposta.pdf) |
 | Base de dados do processo seletivo | [CSV](projeto-lame-2027/desperdicio_alimentos.csv) |
 
-A entrega do projeto do processo seletivo deverá ser realizada até **10 de janeiro de 2027**, com o arquivo `.ipynb` anexado ao e-mail da Liga.
+A entrega do projeto do processo seletivo deverá ser realizada até **10 de janeiro de 2027**, com o arquivo `.ipynb` anexado ao e-mail [lame.ufs.mat@gmail.com](mailto:lame.ufs.mat@gmail.com).
 
 ## 2. Como executar os notebooks
 
