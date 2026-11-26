@@ -2,6 +2,7 @@
 
 - [Notebook de exemplos](exemplos.ipynb): materiais de Motivação, Python, Estatística e Ciência de Dados, na ordem da apresentação.
 - [Notebook de exercícios](exercicios.ipynb): atividades práticas organizadas em níveis de dificuldade.
+- [Gabarito dos exercícios](gabarito.ipynb): soluções de referência das atividades práticas ([Abrir no Colab](https://colab.research.google.com/github/lame-ufs/EMASC-2026/blob/main/notebooks/gabarito.ipynb)).
 - [Base de dados de Estatística](alunos_redes_ia.csv): arquivo CSV utilizado nos exemplos de Estatística.
 - [Base de dados de Ciência de Dados](../guia-de-apoio/dados/notas.csv): utilizada nos exemplos de Ciência de Dados e no Guia de Apoio.
 - [Base do Titanic](titanic.csv): utilizada no bloco de Ciência de Dados dos exercícios, obtida do [repositório de datasets do seaborn](https://github.com/mwaskom/seaborn-data/blob/master/titanic.csv).

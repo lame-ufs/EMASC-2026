@@ -42,9 +42,11 @@ __pycache__/
 !/notebooks/README.md
 !/notebooks/requirements.txt
 
-# Liberação controlada após os exercícios: adicionar explicitamente os
-# arquivos autorizados, sem incluir o material interno do processo seletivo.
-/notebooks/gabarito.ipynb
+# Materiais liberados ao final do minicurso. A resolução de referência
+# do processo seletivo permanece exclusivamente local.
+!/notebooks/gabarito.ipynb
 /data/processo-seletivo/
-/projeto-lame-2027/
+/projeto-lame-2027/*
+!/projeto-lame-2027/proposta.pdf
+!/projeto-lame-2027/desperdicio_alimentos.csv
 /projeto-lame-2027/solucao/
